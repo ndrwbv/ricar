@@ -1,0 +1,115 @@
+# Ручной релиз: сборки под Steam Deck (linux-x64) и Windows (x64).
+# Запуск: вкладка Actions → «Релиз» → Run workflow.
+# На выходе — гит-релиз с knight-deck.tar.gz, knight-win.zip и install-deck.sh.
+name: Релиз
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Тег релиза, например v0.1.1. Пусто — подставится дата.'
+        required: false
+        default: ''
+      notes:
+        description: 'Что нового — попадёт в описание релиза.'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: linux
+          - os: windows-latest
+            target: win
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Зависимости
+        run: npm ci
+
+      - name: Сборка веб-части
+        run: npm run build
+
+      - name: Пакет Electron linux-x64
+        if: matrix.target == 'linux'
+        run: |
+          npx electron-builder --linux dir --x64
+          node tools/pack-deck.mjs
+          cp tools/install-deck.sh release/install-deck.sh
+
+      # zip-таргет собирает распакованную папку в архив без wine и без инсталлятора —
+      # Steam раздаёт именно такие файлы, а не setup.exe.
+      - name: Пакет Electron win-x64
+        if: matrix.target == 'win'
+        run: npx electron-builder --win zip --x64 -c.win.artifactName='knight-win.${ext}'
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.target == 'linux'
+        with:
+          name: knight-linux
+          path: |
+            release/knight-deck.tar.gz
+            release/install-deck.sh
+          if-no-files-found: error
+          retention-days: 7
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.target == 'win'
+        with:
+          name: knight-win
+          path: release/knight-win.zip
+          if-no-files-found: error
+          retention-days: 7
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: assets
+          merge-multiple: true
+
+      - name: Выложить релиз
+        env:
+          GH_TOKEN: ${{ github.token }}
+          IN_TAG: ${{ inputs.tag }}
+          IN_NOTES: ${{ inputs.notes }}
+        run: |
+          set -eu
+          ls -l assets
+          TAG="$IN_TAG"
+          if [ -z "$TAG" ]; then TAG="build-$(date -u +%Y%m%d-%H%M)"; fi
+          NOTES="$IN_NOTES"
+          if [ -z "$NOTES" ]; then NOTES="Сборка из ${GITHUB_SHA:0:7}."; fi
+          {
+            printf '%s\n\n' "$NOTES"
+            printf '**Steam Deck / Linux** — одна команда в Konsole (десктоп-режим):\n\n'
+            printf '```bash\n'
+            printf 'curl -fsSL https://raw.githubusercontent.com/%s/main/tools/install-deck.sh | bash\n' "$GITHUB_REPOSITORY"
+            printf '```\n\n'
+            printf 'Игра встанет в папку `knight` там, где запущена команда. Подробности — docs/DECK.md.\n\n'
+            printf '**Windows** — распаковать `knight-win.zip` и запустить `Knight.exe`.\n'
+          } > notes.md
+          gh release create "$TAG" \
+            assets/knight-deck.tar.gz assets/knight-win.zip assets/install-deck.sh \
+            --title "Рыцарь $TAG" --notes-file notes.md --target "$GITHUB_SHA"
+          echo "релиз: $TAG" >> "$GITHUB_STEP_SUMMARY"

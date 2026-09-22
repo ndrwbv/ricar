@@ -8,6 +8,7 @@
 * Гейм-дизайн документ: [docs/GDD.md](docs/GDD.md)
 * Технические решения, производительность на Steam Deck, почему не Godot: [docs/TECH.md](docs/TECH.md)
 * Установка и запуск на Steam Deck: [docs/DECK.md](docs/DECK.md)
+* Как раздавать игру в Steam под Windows и Linux/Deck: [docs/STEAM.md](docs/STEAM.md)
 * Как нарисовать своих врагов и настроить их анимации/поведение: [docs/ENEMIES.md](docs/ENEMIES.md) — файлы в `public/enemies/`
 
 ## Установка на Steam Deck
@@ -37,7 +38,8 @@ curl -fsSL https://raw.githubusercontent.com/ndrwbv/ricar/main/tools/install-dec
 `knight.sh` из папки установки → в свойствах ярлыка **не** включать Proton (сборка нативная под Linux).
 
 Сборки лежат в [релизах](https://github.com/ndrwbv/ricar/releases) и собираются вручную:
-вкладка **Actions** → **Релиз для Steam Deck** → **Run workflow**. Локально на Mac то же самое — `npm run dist:deck`.
+вкладка **Actions** → **Релиз** → **Run workflow**; тот же прогон делает и Windows-сборку `knight-win.zip`
+(распаковать, запустить `Knight.exe`). Локально на Mac — `npm run dist:deck` и `npm run dist:mac`.
 Раскладка геймпада, диагностика и подробности — [docs/DECK.md](docs/DECK.md).
 
 ## Запуск из исходников
