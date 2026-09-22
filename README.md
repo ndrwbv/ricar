@@ -7,12 +7,40 @@
 
 * Гейм-дизайн документ: [docs/GDD.md](docs/GDD.md)
 * Технические решения, производительность на Steam Deck, почему не Godot: [docs/TECH.md](docs/TECH.md)
-* Как запустить игру на Steam Deck: [docs/DECK.md](docs/DECK.md). Установка на Deck — одна команда в Konsole:
-  `curl -fsSL https://raw.githubusercontent.com/ndrwbv/ricar/main/tools/install-deck.sh | bash`
-  (сборки — в [релизах](https://github.com/ndrwbv/ricar/releases), релиз собирается вручную через Actions)
+* Установка и запуск на Steam Deck: [docs/DECK.md](docs/DECK.md)
 * Как нарисовать своих врагов и настроить их анимации/поведение: [docs/ENEMIES.md](docs/ENEMIES.md) — файлы в `public/enemies/`
 
-## Запуск
+## Установка на Steam Deck
+
+Перейти в десктоп-режим (зажать **STEAM** → `Power` → **Switch to Desktop**), открыть **Konsole**,
+перейти туда, где должна лежать игра (например `cd ~`), и выполнить одну команду:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ndrwbv/ricar/main/tools/install-deck.sh | bash
+```
+
+Скрипт качает свежий релиз, распаковывает игру в папку `knight` **в текущем каталоге**, проставляет
+права на запуск и делает ярлык «Рыцарь» на рабочем столе и в меню приложений. Запуск — `./knight/knight.sh`
+(`--windowed` — окном вместо полного экрана). Обновление — та же команда: прошлая установка перезаписывается,
+уровни из редактора лежат отдельно (`~/.config/Knight/levels`) и не страдают.
+
+Флаги — после `| bash -s --`, например `| bash -s -- --run`:
+
+| Флаг | Что делает |
+| --- | --- |
+| `--run` | запустить игру сразу после установки |
+| `--dir ПАПКА` | поставить не в `./knight`, а куда сказано |
+| `--tag v0.1.0` | конкретная версия вместо последней |
+| `--no-desktop` | не создавать ярлык |
+
+Чтобы играть из игрового режима: Steam → **Games → Add a Non-Steam Game → Browse** → фильтр **All Files** →
+`knight.sh` из папки установки → в свойствах ярлыка **не** включать Proton (сборка нативная под Linux).
+
+Сборки лежат в [релизах](https://github.com/ndrwbv/ricar/releases) и собираются вручную:
+вкладка **Actions** → **Релиз для Steam Deck** → **Run workflow**. Локально на Mac то же самое — `npm run dist:deck`.
+Раскладка геймпада, диагностика и подробности — [docs/DECK.md](docs/DECK.md).
+
+## Запуск из исходников
 
 ```bash
 npm install
