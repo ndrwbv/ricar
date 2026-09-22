@@ -73,7 +73,7 @@ export default defineConfig({
   plugins: [levelsApi()],
   build: {
     target: 'esnext', outDir: 'dist', assetsInlineLimit: 0, sourcemap: false,
-    rollupOptions: { input: { index: resolve(__dirname, 'index.html'), game: resolve(__dirname, 'game.html'), editor: resolve(__dirname, 'editor.html') } },
+    rollupOptions: { input: { index: resolve(__dirname, 'index.html'), game: resolve(__dirname, 'game.html'), editor: resolve(__dirname, 'editor.html'), pad: resolve(__dirname, 'pad.html') } },
   },
   server: { host: '127.0.0.1' },
   // адд-оны three должны попасть в тот же предсобранный чанк, иначе Vite создаёт второй экземпляр three

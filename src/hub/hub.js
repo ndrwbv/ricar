@@ -2,6 +2,8 @@
 import { SETTINGS_SCHEMA, loadSettings, saveSettings, resetSettings } from '../engine/settings.js';
 import { listLevels, loadLevelData, saveLevelLocal, deleteLevelLocal, exportLevel, importLevel, saveLevelToProject, deleteLevelInProject, hasLocal } from '../engine/levelstore.js';
 import { emptyLevel } from '../engine/levelloader.js';
+import { pollGamepad, flushInput, gamepad } from '../engine/input.js';
+import { makePadMenu } from '../ui/padmenu.js';
 
 const el = id => document.getElementById(id);
 let settings = loadSettings();
@@ -87,3 +89,40 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;',
 const enc = encodeURIComponent;
 renderLevels();
 renderSettings();
+
+/* ─── версия и обновление ───
+   В Electron-сборке, поставленной install-deck.sh, показываем версию и даём проверить
+   обновление вручную; сама игра ещё и молча спрашивает GitHub при запуске. */
+async function renderVersion() {
+  if (!window.knightUpdate) return;
+  const box = el('version');
+  const info = await window.knightUpdate.info();
+  box.hidden = false;
+  const draw = (text, btn) => {
+    box.innerHTML = `версия ${esc(info.tag || '—')} · <span id="updState">${esc(text)}</span>` +
+      (btn ? ` <button id="updBtn" class="small">${esc(btn)}</button>` : '');
+    const b = el('updBtn');
+    if (b) b.onclick = async () => {
+      if (b.textContent === 'обновить') { await window.knightUpdate.apply(); draw('ставится…', ''); return; }
+      draw('проверяю…', '');
+      const r = await window.knightUpdate.check(true);
+      if (r.state === 'fresh') draw('это последняя версия', 'проверить обновления');
+      else if (r.state === 'error') draw('GitHub не ответил', 'проверить обновления');
+      else if (r.state === 'updating') draw('ставится…', '');
+      else if (r.latest) draw(`есть ${r.latest}`, info.updatable ? 'обновить' : '');
+      else draw('обновление недоступно', '');
+    };
+  };
+  draw(info.updatable ? '' : 'обновление ставится только из установленной сборки', info.updatable ? 'проверить обновления' : '');
+}
+renderVersion();
+
+/* Геймпад в хабе: на Steam Deck мышь живёт только на тачпаде, поэтому крестовина и стик
+   двигают выбор, A нажимает, влево-вправо крутят ползунки и списки настроек. */
+const padMenu = makePadMenu();
+(function padLoop() {
+  requestAnimationFrame(padLoop);
+  pollGamepad();
+  padMenu(gamepad, document.body);
+  flushInput();
+})();

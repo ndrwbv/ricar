@@ -4,9 +4,16 @@
 export const keys = Object.create(null);
 export const mouse = { dx: 0, dy: 0, wheel: 0, left: false, right: false, middle: false, leftDown: 0, rightDown: 0, middleDown: 0 };
 // геймпад: оси и одноразовые нажатия, снимаются потребителем
-export const gamepad = { connected: false, lx: 0, ly: 0, lx2: 0, ly2: 0, fire: false, alt: false, kick: false, kick2: false, mode: false, jump: false, dash: false, swap: false, reload: false, finish: false, use: false, pause: false, slot: 0 };
+export const gamepad = {
+  connected: false, id: '', mapping: '', raw: false,        // id/mapping — для страницы диагностики pad.html
+  lx: 0, ly: 0, lx2: 0, ly2: 0,
+  fire: false, alt: false, kick: false, kick2: false, mode: false, jump: false, dash: false,
+  swap: false, reload: false, finish: false, use: false, pause: false, slot: 0,
+  menuUp: false, menuDown: false, menuLeft: false, menuRight: false, menuOk: false, menuBack: false,
+};
 const pressed = new Set();   // одноразовые нажатия за кадр
-const gpPrev = [];
+const gpPrev = Object.create(null);   // прошлое состояние кнопок геймпада, по смыслу, а не по номеру
+const padAxes = new Map();            // прошлые оси каждого пада — чтобы понять, на каком играют
 
 const MAP = {
   KeyW: 'fwd', ArrowUp: 'lookUp', KeyS: 'back', ArrowDown: 'lookDown',
@@ -54,42 +61,90 @@ export function once(k) {
   return false;
 }
 
-/* Раскладка Steam Deck / Xbox (standard mapping):
-   RT — правая рука (стрельба, в режиме меча — рубит), LT — левая рука (в режиме ствола тоже стреляет,
+/* Геймпад. Раскладка (Steam Deck, Xbox, DualShock):
+   RT — правая рука (стрельба, в режиме меча — удар), LT — левая рука (в режиме ствола тоже стреляет,
    в режиме меча и «обе руки» — удар клинком), A — прыжок, B — рывок, X — перезарядка, Y — перебор стволов,
    LB — действие, RB — добивание, L3/R3 — пинок, Select — режим рук, Start — пауза,
-   крестовина — меч / пистолет / дробовик / ракетница. */
-export function pollGamepad() {
+   крестовина — меч / пистолет / дробовик / ракетница. В меню: крестовина и левый стик — выбор, A — нажать, B — назад.
+
+   Браузер отдаёт две принципиально разные раскладки. Обычная (`mapping: 'standard'`) — кнопки по номерам
+   из спецификации. Но если игра запущена мимо Steam (например прямо из десктоп-режима Deck'а), контроллер
+   приезжает «сырым» драйвером: другой порядок кнопок, курки и крестовина живут на осях. Обе разбираются ниже,
+   иначе ходьба и удары уезжают не туда. */
+function pickPad() {
   const pads = navigator.getGamepads ? navigator.getGamepads() : [];
-  let gp = null;
-  for (const p of pads) if (p && p.connected) { gp = p; break; }
-  if (!gp) { gamepad.lx = gamepad.ly = gamepad.lx2 = gamepad.ly2 = 0; gamepad.fire = gamepad.alt = false; return; }
+  const live = [];
+  for (const p of pads) if (p && p.connected) live.push(p);
+  if (!live.length) { padAxes.clear(); return null; }
+  /* Падов может быть несколько сразу (виртуальный от Steam Input плюс «сырое» устройство),
+     и молчащий может оказаться первым в списке. Главным считаем тот, на котором последним шевелились. */
+  for (const p of live) {
+    const prev = padAxes.get(p.index);
+    let act = false;
+    if (prev) for (let i = 0; i < p.axes.length; i++) if (Math.abs((p.axes[i] || 0) - (prev[i] || 0)) > .2) { act = true; break; }
+    padAxes.set(p.index, Array.prototype.slice.call(p.axes));
+    if (!act) for (const b of p.buttons) if (b && (b.pressed || b.value > .5)) { act = true; break; }
+    if (act) pickPad.active = p.index;
+  }
+  return live.find(p => p.index === pickPad.active) || live.find(p => p.mapping === 'standard') || live[0];
+}
+
+export function pollGamepad() {
+  const gp = pickPad();
+  if (!gp) {
+    gamepad.lx = gamepad.ly = gamepad.lx2 = gamepad.ly2 = 0;
+    gamepad.fire = gamepad.alt = false;
+    return;
+  }
   gamepad.connected = true;
+  gamepad.id = gp.id; gamepad.mapping = gp.mapping;
+  // «сырая» раскладка: у неё оси под курки и крестовину, кнопок меньше полутора десятков
+  const raw = gp.mapping !== 'standard' && gp.axes.length >= 6;
+  gamepad.raw = raw;
+  const ax = i => gp.axes[i] || 0;
+  const btn = i => { const b = gp.buttons[i]; return !!(b && (b.pressed || b.value > .35)); };
   const dz = v => Math.abs(v) < .15 ? 0 : Math.sign(v) * (Math.abs(v) - .15) / .85;
-  gamepad.lx = dz(gp.axes[0] || 0); gamepad.ly = dz(gp.axes[1] || 0);
-  const rx = dz(gp.axes[2] || 0), ry = dz(gp.axes[3] || 0);
-  gamepad.lx2 = rx * Math.abs(rx); gamepad.ly2 = ry * Math.abs(ry);   // квадратичная кривая
-  const b = i => !!(gp.buttons[i] && (gp.buttons[i].pressed || gp.buttons[i].value > .35));
-  // курки: в standard mapping это кнопки 6/7 с аналоговым value; у «сырых» линуксовых драйверов — оси 4/5 (-1 отпущен)
-  const axisTrig = gp.buttons.length < 7 && gp.axes.length >= 6;
-  const lt = axisTrig ? (gp.axes[4] || -1) > -.3 : b(6);
-  const rt = axisTrig ? (gp.axes[5] || -1) > -.3 : b(7);
-  const edge = i => { const now = b(i); const was = gpPrev[i] || false; gpPrev[i] = now; return now && !was; };
+
+  let lx, ly, rx, ry, lt, rt, dUp, dDown, dLeft, dRight, B;
+  if (raw) {
+    lx = ax(0); ly = ax(1); rx = ax(3); ry = ax(4);
+    lt = ax(2) > -.4; rt = ax(5) > -.4;                       // курки-оси: покой -1, нажатие к +1
+    const hx = ax(6), hy = ax(7);                             // крестовина тоже осями
+    dLeft = hx < -.5; dRight = hx > .5; dUp = hy < -.5; dDown = hy > .5;
+    B = { a: 0, b: 1, x: 2, y: 3, lb: 4, rb: 5, back: 6, start: 7, l3: 9, r3: 10 };
+  } else {
+    lx = ax(0); ly = ax(1); rx = ax(2); ry = ax(3);
+    lt = btn(6); rt = btn(7);
+    dUp = btn(12); dDown = btn(13); dLeft = btn(14); dRight = btn(15);
+    B = { a: 0, b: 1, x: 2, y: 3, lb: 4, rb: 5, back: 8, start: 9, l3: 10, r3: 11 };
+  }
+
+  gamepad.lx = dz(lx); gamepad.ly = dz(ly);
+  const rdx = dz(rx), rdy = dz(ry);
+  gamepad.lx2 = rdx * Math.abs(rdx); gamepad.ly2 = rdy * Math.abs(rdy);   // квадратичная кривая
   gamepad.fire = rt;                     // RT — правая рука: стрельба / рубка
   gamepad.alt = lt;                      // LT — левая рука: стрельба в режиме ствола, клинок в остальных
-  if (edge(0)) gamepad.jump = true;
-  if (edge(1)) gamepad.dash = true;
-  if (edge(3)) gamepad.swap = true;
-  if (edge(2)) gamepad.reload = true;
-  if (edge(5)) gamepad.finish = true;
-  if (edge(4)) gamepad.use = true;
-  if (edge(8)) gamepad.mode = true;      // Select/View — переключить руки (меч / ствол / обе)
-  if (edge(10) || edge(11)) gamepad.kick = true;   // нажатие стиков — пинок
-  if (edge(9)) gamepad.pause = true;
-  if (edge(12)) gamepad.slot = 1;        // крестовина вверх — меч
-  if (edge(14)) gamepad.slot = 2;        // влево — пистолет
-  if (edge(15)) gamepad.slot = 3;        // вправо — дробовик
-  if (edge(13)) gamepad.slot = 4;        // вниз — ракетница
+
+  const edge = (name, now) => { const was = gpPrev[name] || false; gpPrev[name] = now; return now && !was; };
+  const a = edge('a', btn(B.a)), b = edge('b', btn(B.b));
+  if (a) { gamepad.jump = true; gamepad.menuOk = true; }
+  if (b) { gamepad.dash = true; gamepad.menuBack = true; }
+  if (edge('y', btn(B.y))) gamepad.swap = true;
+  if (edge('x', btn(B.x))) gamepad.reload = true;
+  if (edge('rb', btn(B.rb))) gamepad.finish = true;
+  if (edge('lb', btn(B.lb))) gamepad.use = true;
+  if (edge('back', btn(B.back))) gamepad.mode = true;        // Select/View — переключить руки (меч / ствол / обе)
+  if (edge('l3', btn(B.l3)) || edge('r3', btn(B.r3))) gamepad.kick = true;   // нажатие стиков — пинок
+  if (edge('start', btn(B.start))) gamepad.pause = true;
+  if (edge('up', dUp)) { gamepad.slot = 1; gamepad.menuUp = true; }          // крестовина: оружие в бою, выбор в меню
+  if (edge('left', dLeft)) { gamepad.slot = 2; gamepad.menuLeft = true; }
+  if (edge('right', dRight)) { gamepad.slot = 3; gamepad.menuRight = true; }
+  if (edge('down', dDown)) { gamepad.slot = 4; gamepad.menuDown = true; }
+  // левый стик тоже листает меню — крестовиной на Deck'е пользуются реже
+  if (edge('stickUp', gamepad.ly < -.6)) gamepad.menuUp = true;
+  if (edge('stickDown', gamepad.ly > .6)) gamepad.menuDown = true;
+  if (edge('stickLeft', gamepad.lx < -.6)) gamepad.menuLeft = true;
+  if (edge('stickRight', gamepad.lx > .6)) gamepad.menuRight = true;
 }
 
 // вызывается в конце кадра
@@ -99,6 +154,7 @@ export function flushInput() {
   mouse.leftDown = mouse.rightDown = mouse.middleDown = 0;
   gamepad.kick = gamepad.kick2 = gamepad.mode = gamepad.jump = gamepad.dash = gamepad.swap = gamepad.reload = gamepad.finish = gamepad.use = gamepad.pause = false;
   gamepad.slot = 0;
+  gamepad.menuUp = gamepad.menuDown = gamepad.menuLeft = gamepad.menuRight = gamepad.menuOk = gamepad.menuBack = false;
 }
 
 export function lockPointer(canvas) {

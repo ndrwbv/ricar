@@ -1,6 +1,8 @@
 # Ручной релиз: сборки под Steam Deck (linux-x64) и Windows (x64).
 # Запуск: вкладка Actions → «Релиз» → Run workflow.
 # На выходе — гит-релиз с knight-deck.tar.gz, knight-win.zip и install-deck.sh.
+# Тег релиза запекается в сборку (electron/build-tag.json): по нему игра понимает,
+# что на GitHub появилась версия свежее, и предлагает обновиться.
 name: Релиз
 
 on:
@@ -19,7 +21,23 @@ permissions:
   contents: write
 
 jobs:
+  meta:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.t.outputs.tag }}
+    steps:
+      - id: t
+        env:
+          IN_TAG: ${{ inputs.tag }}
+        run: |
+          set -eu
+          TAG="$IN_TAG"
+          if [ -z "$TAG" ]; then TAG="build-$(date -u +%Y%m%d-%H%M)"; fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "тег: $TAG" >> "$GITHUB_STEP_SUMMARY"
+
   build:
+    needs: meta
     strategy:
       fail-fast: false
       matrix:
@@ -42,6 +60,14 @@ jobs:
 
       - name: Зависимости
         run: npm ci
+
+      - name: Метка сборки
+        env:
+          TAG: ${{ needs.meta.outputs.tag }}
+        run: |
+          set -eu
+          printf '{"tag":"%s","sha":"%s","date":"%s"}\n' "$TAG" "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > electron/build-tag.json
+          cat electron/build-tag.json
 
       - name: Сборка веб-части
         run: npm run build
@@ -78,7 +104,7 @@ jobs:
           retention-days: 7
 
   release:
-    needs: build
+    needs: [meta, build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -91,13 +117,11 @@ jobs:
       - name: Выложить релиз
         env:
           GH_TOKEN: ${{ github.token }}
-          IN_TAG: ${{ inputs.tag }}
+          TAG: ${{ needs.meta.outputs.tag }}
           IN_NOTES: ${{ inputs.notes }}
         run: |
           set -eu
           ls -l assets
-          TAG="$IN_TAG"
-          if [ -z "$TAG" ]; then TAG="build-$(date -u +%Y%m%d-%H%M)"; fi
           NOTES="$IN_NOTES"
           if [ -z "$NOTES" ]; then NOTES="Сборка из ${GITHUB_SHA:0:7}."; fi
           {
@@ -106,7 +130,8 @@ jobs:
             printf '```bash\n'
             printf 'curl -fsSL https://raw.githubusercontent.com/%s/main/tools/install-deck.sh | bash\n' "$GITHUB_REPOSITORY"
             printf '```\n\n'
-            printf 'Игра встанет в папку `knight` там, где запущена команда. Подробности — docs/DECK.md.\n\n'
+            printf 'Игра встанет в папку `knight` там, где запущена команда, и дальше будет сама предлагать обновление.\n'
+            printf 'Подробности — docs/DECK.md.\n\n'
             printf '**Windows** — распаковать `knight-win.zip` и запустить `Knight.exe`.\n'
           } > notes.md
           gh release create "$TAG" \

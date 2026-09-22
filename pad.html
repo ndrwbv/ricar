@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: blob: ws: http://localhost:* http://127.0.0.1:*">
+  <title>Рыцарь — геймпад</title>
+  <style>
+    body { margin: 0; padding: 16px; background: #14100e; color: #e8e0d0; font: 14px/1.5 "SF Mono", Menlo, Consolas, monospace; }
+    h1 { font-size: 18px; margin: 0 0 4px; letter-spacing: .1em; }
+    .dim { color: #8a7a68; }
+    table { border-collapse: collapse; margin: 8px 0 16px; }
+    td, th { padding: 2px 10px 2px 0; text-align: left; vertical-align: top; }
+    .on { color: #ffd070; }
+    .bar { display: inline-block; width: 120px; height: 8px; background: #2a2018; vertical-align: middle; }
+    .bar i { display: block; height: 100%; background: #b81c14; }
+    a { color: #ffd070; }
+    #log { white-space: pre-wrap; color: #b09a78; min-height: 4em; }
+  </style>
+</head>
+<body>
+  <h1>ПРОВЕРКА ГЕЙМПАДА</h1>
+  <p class="dim">Нажми любую кнопку, чтобы браузер показал контроллер. Здесь видно, что именно приезжает от устройства
+    и как это разбирает игра. <a href="./index.html">← в хаб</a></p>
+  <div id="out"></div>
+  <h2 style="font-size:15px">Что сработало</h2>
+  <div id="log" class="dim">—</div>
+  <script type="module" src="/src/ui/pad.js"></script>
+</body>
+</html>

@@ -21,6 +21,7 @@ import { loadLevelData } from './engine/levelstore.js';
 import { loadSettings } from './engine/settings.js';
 import { Post } from './engine/post.js';
 import { initSandbox } from './sandbox/sandbox.js';
+import { makePadMenu } from './ui/padmenu.js';
 import { initCaveRun } from './cave/run.js';
 
 const el = id => document.getElementById(id);
@@ -151,7 +152,12 @@ game.templateDataURL = n => buildTemplate(n).toDataURL('image/png');
    3 секунды. Печатает средний fps, медиану и худшие кадры — по ним видно,
    ровная просадка это или редкие рывки. */
 game.fps = (sec = 3) => new Promise(res => {
-  const d = []; let last = performance.now(); const t0 = last;
+  const d = []; /* Экраны листаются геймпадом: на Deck'е мышь только на тачпаде, а меню нужно и без неё. */
+const padMenu = makePadMenu();
+const SCREEN_IDS = ['start', 'dead', 'win', 'caveStats', 'caveDead', 'pause'];
+const visibleScreen = () => { for (const id of SCREEN_IDS) { const e = el(id); if (e && !e.hidden) return e; } return null; };
+
+let last = performance.now(); const t0 = last;
   const tick = now => {
     d.push(now - last); last = now;
     if (now - t0 < sec * 1000) requestAnimationFrame(tick);
@@ -201,7 +207,9 @@ el('play').onclick = begin;
 el('retry').onclick = () => location.reload();
 el('again').onclick = () => location.reload();
 el('nextLevel').onclick = async () => { el('win').hidden = true; await game.loadLevel(game.levelData.next, { keepPlayer: true }); game.running = true; lockPointer(glCanvas); };
-el('pause').onclick = e => { if (e.target.tagName === 'A') return; game.paused = false; el('pause').hidden = true; lockPointer(glCanvas); };
+const unpause = () => { game.paused = false; el('pause').hidden = true; lockPointer(glCanvas); };
+el('pause').onclick = e => { if (e.target.tagName === 'A') return; unpause(); };
+el('resume').onclick = e => { e.stopPropagation(); unpause(); };
 glCanvas.addEventListener('click', () => { if (game.running && !game.paused) lockPointer(glCanvas); });
 document.addEventListener('pointerlockchange', () => {
   if (!pointerLocked(glCanvas) && game.running && !game.player.dead && !game.won && !gamepad.connected && !game.sandboxOpen) { game.paused = true; el('pause').hidden = false; }
@@ -226,6 +234,7 @@ function frame(now) {
   dtAvg += (realDt - dtAvg) * .2;
   const rawDt = Math.min(.05, dtAvg);
   pollGamepad();
+  padMenu(gamepad, visibleScreen());
   if (once('pixel')) { const i = (SCALES.indexOf(pixelScale) + 1) % SCALES.length; pixelScale = SCALES[i]; resize(); }
   if ((once('pause') || gamepad.pause) && game.running) {
     game.paused = !game.paused; el('pause').hidden = !game.paused;
