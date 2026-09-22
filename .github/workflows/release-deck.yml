@@ -44,11 +44,13 @@ jobs:
       - name: Выложить релиз
         env:
           GH_TOKEN: ${{ github.token }}
+          IN_TAG: ${{ inputs.tag }}
+          IN_NOTES: ${{ inputs.notes }}
         run: |
           set -eu
-          TAG="${{ inputs.tag }}"
+          TAG="$IN_TAG"
           if [ -z "$TAG" ]; then TAG="deck-$(date -u +%Y%m%d-%H%M)"; fi
-          NOTES="${{ inputs.notes }}"
+          NOTES="$IN_NOTES"
           if [ -z "$NOTES" ]; then NOTES="Сборка для Steam Deck из ${GITHUB_SHA:0:7}."; fi
           printf '%s\n\n%s\n' "$NOTES" \
             'Запуск: см. docs/DECK.md — распаковать в ~/Games и добавить knight.sh как стороннюю игру в Steam.' > notes.md
