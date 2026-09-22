@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: blob: ws: http://localhost:* http://127.0.0.1:*">
+  <title>Рыцарь — игра</title>
+  <link rel="stylesheet" href="/src/ui/style.css">
+</head>
+<body>
+  <!-- В бою на экране нет ни одной надписи: только канвас HUD с иконками здоровья и
+       оружия. Текст остаётся лишь в меню (кнопки), которые нужны для навигации. -->
+  <div id="game">
+    <canvas id="gl"></canvas>
+    <canvas id="hud"></canvas>
+    <div id="pain"></div>
+    <div id="fade"></div>
+    <div id="stats" hidden></div>
+    <div id="sandbox" hidden></div>
+
+    <div id="start" class="screen">
+      <div class="title">РЫЦАРЬ</div>
+      <div class="sub" id="levelName">…</div>
+      <button id="play">В БОЙ</button>
+      <a href="./index.html" class="link">← в хаб</a>
+      <div class="warn">18+ · сцены крайней жестокости</div>
+    </div>
+
+    <div id="dead" class="screen" hidden>
+      <div class="title red">✖</div>
+      <button id="retry">ЕЩЁ РАЗ</button>
+      <a href="./index.html" class="link">← в хаб</a>
+    </div>
+
+    <div id="win" class="screen" hidden>
+      <div class="title">✔</div>
+      <button id="nextLevel" hidden>ДАЛЬШЕ</button>
+      <button id="again">СЫГРАТЬ СНОВА</button>
+      <a href="./index.html" class="link">← в хаб</a>
+    </div>
+
+    <!-- режим вылазок: итоги пройденной пещеры и итоги оборвавшейся вылазки -->
+    <div id="caveStats" class="screen" hidden></div>
+    <div id="caveDead" class="screen" hidden></div>
+
+    <div id="pause" class="screen" hidden>
+      <div class="title">❚❚</div>
+      <a href="./index.html" class="link">← в хаб</a>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

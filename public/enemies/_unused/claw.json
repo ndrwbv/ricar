@@ -1,0 +1,121 @@
+{
+  "name": "claw",
+  "sheet": "claw.png",
+  "frameW": 136,
+  "frameH": 192,
+  "variants": 2,
+  "size": [
+    1.52,
+    2.12
+  ],
+  "radius": 0.5,
+  "frames": {
+    "walk0": 0,
+    "walk1": 1,
+    "attack": 2,
+    "pain": 3,
+    "headless": 4,
+    "crouch": 5,
+    "surrender": 6,
+    "knife": 7,
+    "hop0": 8,
+    "hop1": 9,
+    "crawl0": 10,
+    "crawl1": 11,
+    "dead": 12,
+    "deadHeadless": 13
+  },
+  "anims": {
+    "idle": {
+      "frames": [
+        "walk0"
+      ]
+    },
+    "walk": {
+      "frames": [
+        "walk0",
+        "walk1"
+      ],
+      "fps": 9
+    },
+    "attack": {
+      "frames": [
+        "attack"
+      ]
+    },
+    "pain": {
+      "frames": [
+        "pain"
+      ]
+    },
+    "headless": {
+      "frames": [
+        "headless"
+      ]
+    },
+    "crouch": {
+      "frames": [
+        "crouch"
+      ]
+    },
+    "surrender": {
+      "frames": [
+        "surrender"
+      ]
+    },
+    "knife": {
+      "frames": [
+        "knife"
+      ]
+    },
+    "hop": {
+      "frames": [
+        "hop0",
+        "hop1"
+      ],
+      "fps": 4
+    },
+    "crawl": {
+      "frames": [
+        "crawl0",
+        "crawl1"
+      ],
+      "fps": 2.5
+    }
+  },
+  "stats": {
+    "hp": 85,
+    "speed": 6.8,
+    "alertR": 24,
+    "female": true,
+    "melee": {
+      "range": 2.1,
+      "dmg": 15,
+      "windup": 0.32,
+      "cooldown": 0.7
+    },
+    "lunge": true,
+    "flank": [
+      1.6,
+      -1.6,
+      2.4,
+      -2.4,
+      3.1,
+      0
+    ],
+    "tactics": {
+      "cover": 0,
+      "surrender": 0,
+      "fake": 0,
+      "knifeDmg": 20
+    }
+  },
+  "colors": {
+    "body": "#1a2a4a",
+    "legs": "#1a2a4a",
+    "skin": "#e8b898",
+    "hair": "#1a1a1a"
+  },
+  "gibs": "female",
+  "head": "female"
+}

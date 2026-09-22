@@ -1,0 +1,189 @@
+{
+  "name": "cacodemon",
+  "title": "какодемон",
+  "sheet": "sheet.png",
+  "frameW": 100,
+  "frameH": 77,
+  "variants": 1,
+  "size": [
+    3.13,
+    2.41
+  ],
+  "radius": 1,
+  "frames": {
+    "walk0": 0,
+    "attack": 1,
+    "attack1": 2,
+    "pain": 3,
+    "die0": 4,
+    "die1": 5,
+    "die2": 6,
+    "die3": 7,
+    "die4": 8,
+    "die5": 9,
+    "dead": 10,
+    "walk0NoArmR": 11,
+    "attackNoArmR": 12,
+    "painNoArmR": 13,
+    "walk0NoArmL": 14,
+    "attackNoArmL": 15,
+    "painNoArmL": 16,
+    "walk0NoArms": 17,
+    "attackNoArms": 18,
+    "painNoArms": 19,
+    "walk0Hop": 20,
+    "attackHop": 21,
+    "painHop": 22
+  },
+  "anims": {
+    "idle": {
+      "frames": [
+        "walk0"
+      ]
+    },
+    "walk": {
+      "frames": [
+        "walk0"
+      ],
+      "fps": 3
+    },
+    "attack": {
+      "frames": [
+        "attack",
+        "attack1",
+        "attackNoArmR",
+        "attackNoArmL",
+        "attackNoArms",
+        "attackHop"
+      ],
+      "fps": 6
+    },
+    "pain": {
+      "frames": [
+        "pain"
+      ]
+    },
+    "die": {
+      "frames": [
+        "die0",
+        "die1",
+        "die2",
+        "die3",
+        "die4",
+        "die5"
+      ],
+      "fps": 14.285714285714286
+    },
+    "walkNoArmR": {
+      "frames": [
+        "walk0NoArmR"
+      ],
+      "fps": 6
+    },
+    "painNoArmR": {
+      "frames": [
+        "painNoArmR"
+      ]
+    },
+    "attackNoArmR": {
+      "frames": [
+        "attackNoArmR"
+      ]
+    },
+    "walkNoArmL": {
+      "frames": [
+        "walk0NoArmL"
+      ],
+      "fps": 6
+    },
+    "painNoArmL": {
+      "frames": [
+        "painNoArmL"
+      ]
+    },
+    "attackNoArmL": {
+      "frames": [
+        "attackNoArmL"
+      ]
+    },
+    "walkNoArms": {
+      "frames": [
+        "walk0NoArms"
+      ],
+      "fps": 6
+    },
+    "painNoArms": {
+      "frames": [
+        "painNoArms"
+      ]
+    },
+    "attackNoArms": {
+      "frames": [
+        "attackNoArms"
+      ]
+    },
+    "hop": {
+      "frames": [
+        "walk0Hop"
+      ],
+      "fps": 4
+    },
+    "painHop": {
+      "frames": [
+        "painHop"
+      ]
+    },
+    "attackHop": {
+      "frames": [
+        "attackHop"
+      ]
+    }
+  },
+  "stats": {
+    "hp": 780,
+    "armor": 0.3,
+    "speed": 3.2,
+    "alertR": 28,
+    "female": false,
+    "melee": {
+      "range": 2.6,
+      "dmg": 26,
+      "windup": 0.5,
+      "cooldown": 1.3
+    },
+    "flank": [
+      0,
+      0.9,
+      -0.9
+    ],
+    "tactics": {
+      "cover": 0,
+      "surrender": 0,
+      "fake": 0,
+      "knifeDmg": 0
+    }
+  },
+  "parts": {
+    "head": [
+      0.22,
+      0.14,
+      0.78,
+      0.7
+    ],
+    "armL": null,
+    "armR": null,
+    "legL": null,
+    "legR": null
+  },
+  "colors": {
+    "body": "#6a5a44",
+    "legs": "#4a3c2c",
+    "skin": "#b08a60",
+    "hair": "#2a2018"
+  },
+  "gibs": "meat",
+  "source": "WAD freedoom2.wad, спрайты HEAD*",
+  "drop": {
+    "items": []
+  }
+}

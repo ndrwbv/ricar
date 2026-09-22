@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: blob: ws: http://localhost:* http://127.0.0.1:*">
+  <title>Рыцарь — хаб</title>
+  <link rel="stylesheet" href="/src/hub/hub.css">
+</head>
+<body>
+  <header>
+    <h1>РЫЦАРЬ</h1>
+    <div class="tag">хаб: уровни · песочница · редактор · настройки</div>
+  </header>
+  <main>
+    <section class="col">
+      <h2>Вылазка в пещеры</h2>
+      <div class="level">
+        <div class="name">Пещеры <span class="id">бесконечный режим</span></div>
+        <div class="acts"><a class="btn play" href="./game.html?mode=cave">В пещеры</a></div>
+      </div>
+      <p class="dim">Стоишь у входа, заходишь — уровень собирается заново: коридоры, широкая арена с мини-боссом и галереей под сводом, выход.
+        Залы разные: камень, известняк, выжженный грунт, вросшая техника, озеро с водопадом, мшистый грот со столбами света.
+        Из убитых вылетают пачки денег и стволы. Нашёл выход — вышел, показали итоги, можно нырять снова; счётчик пройденных пещер растёт.
+        Начинаешь с одним мечом, стволы находишь в пещерах и уносишь с собой. Смерть обнуляет глубину, золото и оружие.
+        Клавиша <b>M</b> — карта уровня (для проверки генерации), <b>F9</b> — пересобрать пещеру, <b>F10</b> — выгрузить её в JSON.
+        <a href="./docs/CAVE.md" target="_blank">правила генерации</a></p>
+    </section>
+    <section class="col">
+      <h2>Уровни <button id="newLevel" class="small">+ новый</button> <button id="importLevel" class="small">импорт JSON</button></h2>
+      <div id="levels" class="levels"></div>
+      <p class="dim">Каждый уровень — отдельный JSON в <code>public/levels/</code>. Правки из редактора сохраняются в браузере и, при запущенном dev-сервере, прямо в проект. «Сброс» возвращает встроенную версию.</p>
+    </section>
+    <section class="col">
+      <h2>Настройки игры <button id="resetSettings" class="small">сбросить</button></h2>
+      <form id="settings"></form>
+      <p class="dim">Сохраняются автоматически и действуют во всех режимах.</p>
+    </section>
+    <section class="col">
+      <h2>Управление</h2>
+      <ul class="keys">
+        <li><b>WASD</b> — движение · <b>мышь</b> — обзор · <b>Shift</b> — рывок · <b>Space</b> — прыжок</li>
+        <li><b>Tab</b> — руки: меч → огнестрел → <b>обе сразу</b>. Меч всегда в левой руке, ствол в правой.</li>
+        <li><b>ЛКМ</b> — удар мечом или выстрел (в режиме «обе руки» — выстрел) · <b>ПКМ</b> — пинок, а в режиме «обе руки» — удар мечом · <b>средняя кнопка</b> — пинок всегда</li>
+        <li><b>F</b> — добить оглушённого · <b>Q</b> / колесо — сменить ствол · <b>1</b> меч, <b>2</b> пистолет, <b>3</b> дробовик · <b>R</b> — перезарядка</li>
+        <li>стрелки — поворот камеры без мыши · <b>P</b> — размер пикселя · <b>Esc</b> — пауза</li>
+        <li>в песочнице: <b>F1</b> — панель · <b>F2</b> — статистика · <b>F5</b> — перезапуск · <b>F6</b> — полёт · <b>F7</b> — заморозить врагов</li>
+        <li>в песочнице: <b>зажать ⌘ / Ctrl</b> — облёт сцены камерой (мышь — вращать, колесо — приблизить, WASD/Space/E — двигать точку обзора)</li>
+      </ul>
+      <p class="dim">В бою на экране нет ни одной надписи: только иконка здоровья с полосой слева внизу и иконки оружия с патронами справа.
+        Цифры урона по врагу и полученного урона включаются в «Читах и отладке». Звук по умолчанию выключен — включается в разделе «Звук».</p>
+    </section>
+  </main>
+  <footer>
+    <a href="./docs/EDITOR.md" target="_blank">формат уровней</a> · <a href="./docs/ENEMIES.md" target="_blank">как рисовать врагов</a> · 18+
+  </footer>
+  <script type="module" src="/src/hub/hub.js"></script>
+</body>
+</html>

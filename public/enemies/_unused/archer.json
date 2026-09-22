@@ -1,0 +1,126 @@
+{
+  "name": "archer",
+  "sheet": "archer.png",
+  "frameW": 128,
+  "frameH": 176,
+  "variants": 3,
+  "size": [
+    1.4,
+    1.88
+  ],
+  "radius": 0.46,
+  "frames": {
+    "walk0": 0,
+    "walk1": 1,
+    "attack": 2,
+    "pain": 3,
+    "headless": 4,
+    "crouch": 5,
+    "surrender": 6,
+    "knife": 7,
+    "hop0": 8,
+    "hop1": 9,
+    "crawl0": 10,
+    "crawl1": 11,
+    "dead": 12,
+    "deadHeadless": 13
+  },
+  "anims": {
+    "idle": {
+      "frames": [
+        "walk0"
+      ]
+    },
+    "walk": {
+      "frames": [
+        "walk0",
+        "walk1"
+      ],
+      "fps": 7
+    },
+    "attack": {
+      "frames": [
+        "attack"
+      ]
+    },
+    "pain": {
+      "frames": [
+        "pain"
+      ]
+    },
+    "headless": {
+      "frames": [
+        "headless"
+      ]
+    },
+    "crouch": {
+      "frames": [
+        "crouch"
+      ]
+    },
+    "surrender": {
+      "frames": [
+        "surrender"
+      ]
+    },
+    "knife": {
+      "frames": [
+        "knife"
+      ]
+    },
+    "hop": {
+      "frames": [
+        "hop0",
+        "hop1"
+      ],
+      "fps": 4
+    },
+    "crawl": {
+      "frames": [
+        "crawl0",
+        "crawl1"
+      ],
+      "fps": 2.5
+    }
+  },
+  "stats": {
+    "hp": 80,
+    "speed": 4.2,
+    "alertR": 28,
+    "female": false,
+    "ranged": {
+      "range": 30,
+      "burst": 1,
+      "gap": 0.1,
+      "dmg": 22,
+      "aim": 0.85,
+      "cooldown": 2.3,
+      "spread": 0.025
+    },
+    "prefer": [
+      11,
+      20
+    ],
+    "flank": [
+      0,
+      0.9,
+      -0.9,
+      1.6,
+      -1.6
+    ],
+    "tactics": {
+      "cover": 0.8,
+      "surrender": 0.4,
+      "fake": 0.35,
+      "knifeDmg": 16
+    }
+  },
+  "colors": {
+    "body": "#3a4a32",
+    "legs": "#2f2a22",
+    "skin": "#c8956a",
+    "hair": "#2a2018"
+  },
+  "gibs": "male",
+  "head": "male"
+}

@@ -1,0 +1,1878 @@
+{
+ "id": "sandbox",
+ "name": "0. Песочница — бессмертие и всё оружие",
+ "version": 1,
+ "env": "crypt",
+ "envs": {},
+ "floorH": 4.2,
+ "player": {
+  "god": true,
+  "infiniteAmmo": true,
+  "noclip": false,
+  "weapons": [
+   "pistol",
+   "shotgun",
+   "rocket"
+  ],
+  "slots": 9,
+  "maxHp": 200
+ },
+ "start": {
+  "x": 0,
+  "y": 0,
+  "z": -34,
+  "yaw": 0
+ },
+ "bounds": {
+  "x0": -58,
+  "z0": -66,
+  "x1": 58,
+  "z1": 34
+ },
+ "objective": "",
+ "next": null,
+ "objects": [
+  {
+   "t": "floor",
+   "tex": "cobble",
+   "x": -32,
+   "y": 0,
+   "z": -32,
+   "w": 64,
+   "d": 64
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -32,
+   "y": 9,
+   "z": -32,
+   "w": 64,
+   "h": 0.6,
+   "d": 64
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -32,
+   "y": 0,
+   "z": 32,
+   "w": 64,
+   "h": 9,
+   "d": 1
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -33,
+   "y": 0,
+   "z": -32,
+   "w": 1,
+   "h": 9,
+   "d": 64
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": 32,
+   "y": 0,
+   "z": -32,
+   "w": 1,
+   "h": 9,
+   "d": 64
+  },
+  {
+   "t": "floor",
+   "tex": "plank",
+   "x": -32,
+   "y": 4.2,
+   "z": -32,
+   "w": 64,
+   "d": 7,
+   "o": {
+    "solid": true
+   }
+  },
+  {
+   "t": "floor",
+   "tex": "plank",
+   "x": -32,
+   "y": 4.2,
+   "z": 25,
+   "w": 64,
+   "d": 7,
+   "o": {
+    "solid": true
+   }
+  },
+  {
+   "t": "floor",
+   "tex": "plank",
+   "x": -32,
+   "y": 4.2,
+   "z": -25,
+   "w": 7,
+   "d": 50,
+   "o": {
+    "solid": true
+   }
+  },
+  {
+   "t": "floor",
+   "tex": "plank",
+   "x": 25,
+   "y": 4.2,
+   "z": -25,
+   "w": 7,
+   "d": 50,
+   "o": {
+    "solid": true
+   }
+  },
+  {
+   "t": "box",
+   "tex": "stone",
+   "x": -32,
+   "y": 4.2,
+   "z": -25.3,
+   "w": 64,
+   "h": 1.1,
+   "d": 0.3
+  },
+  {
+   "t": "box",
+   "tex": "stone",
+   "x": -32,
+   "y": 4.2,
+   "z": 25,
+   "w": 64,
+   "h": 1.1,
+   "d": 0.3
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": -22.9,
+   "y": 0,
+   "z": -27.299999999999997,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": -22.9,
+   "y": 0,
+   "z": 24.6,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": -27.299999999999997,
+   "y": 0,
+   "z": -22.9,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": 24.6,
+   "y": 0,
+   "z": -22.9,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": -11.9,
+   "y": 0,
+   "z": -27.299999999999997,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": -11.9,
+   "y": 0,
+   "z": 24.6,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": -27.299999999999997,
+   "y": 0,
+   "z": -11.9,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": 24.6,
+   "y": 0,
+   "z": -11.9,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": -0.9,
+   "y": 0,
+   "z": 24.6,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": -27.299999999999997,
+   "y": 0,
+   "z": -0.9,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": 24.6,
+   "y": 0,
+   "z": -0.9,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": 10.1,
+   "y": 0,
+   "z": -27.299999999999997,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": 10.1,
+   "y": 0,
+   "z": 24.6,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": -27.299999999999997,
+   "y": 0,
+   "z": 10.1,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": 24.6,
+   "y": 0,
+   "z": 10.1,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": 21.1,
+   "y": 0,
+   "z": -27.299999999999997,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": 21.1,
+   "y": 0,
+   "z": 24.6,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": -27.299999999999997,
+   "y": 0,
+   "z": 21.1,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": 24.6,
+   "y": 0,
+   "z": 21.1,
+   "r": 0.9,
+   "h": 4.2,
+   "seg": 8
+  },
+  {
+   "t": "prefab",
+   "kind": "stairs",
+   "x": -25,
+   "z": -1.2,
+   "p": {
+    "w": 2.6,
+    "h": 4.2,
+    "len": 5.5,
+    "face": "3 (−x, запад)",
+    "tex": "plank",
+    "rail": true,
+    "under": true
+   }
+  },
+  {
+   "t": "prefab",
+   "kind": "stairs",
+   "x": 19.5,
+   "z": -1.2,
+   "p": {
+    "w": 2.6,
+    "h": 4.2,
+    "len": 5.5,
+    "face": "1 (+x, восток)",
+    "tex": "plank",
+    "rail": true,
+    "under": true
+   }
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -7,
+   "y": 0,
+   "z": -7,
+   "w": 14,
+   "h": 0.9,
+   "d": 14
+  },
+  {
+   "t": "box",
+   "tex": "marble",
+   "x": -5,
+   "y": 0.9,
+   "z": -5,
+   "w": 10,
+   "h": 0.35,
+   "d": 10
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": -6.7,
+   "y": 0.9,
+   "z": -6.7,
+   "r": 0.7,
+   "h": 3,
+   "seg": 6
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": -6.7,
+   "y": 0.9,
+   "z": 5.3,
+   "r": 0.7,
+   "h": 3,
+   "seg": 6
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": 5.3,
+   "y": 0.9,
+   "z": -6.7,
+   "r": 0.7,
+   "h": 3,
+   "seg": 6
+  },
+  {
+   "t": "cyl",
+   "tex": "stone",
+   "x": 5.3,
+   "y": 0.9,
+   "z": 5.3,
+   "r": 0.7,
+   "h": 3,
+   "seg": 6
+  },
+  {
+   "t": "prefab",
+   "kind": "fireplace",
+   "x": -1.2,
+   "z": -1.2
+  },
+  {
+   "t": "box",
+   "tex": "plank",
+   "x": -10.8,
+   "y": 0,
+   "z": 23.2,
+   "w": 1.6,
+   "h": 1.1,
+   "d": 1.6
+  },
+  {
+   "t": "box",
+   "tex": "plank",
+   "x": -6.8,
+   "y": 0,
+   "z": 23.2,
+   "w": 1.6,
+   "h": 1.1,
+   "d": 1.6
+  },
+  {
+   "t": "box",
+   "tex": "plank",
+   "x": 5.2,
+   "y": 0,
+   "z": 23.2,
+   "w": 1.6,
+   "h": 1.1,
+   "d": 1.6
+  },
+  {
+   "t": "box",
+   "tex": "plank",
+   "x": 9.2,
+   "y": 0,
+   "z": 23.2,
+   "w": 1.6,
+   "h": 1.1,
+   "d": 1.6
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": -13,
+   "z": 23
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": 13,
+   "z": 23
+  },
+  {
+   "t": "prefab",
+   "kind": "crate",
+   "x": -16,
+   "z": -4,
+   "p": {
+    "s": 1.4
+   }
+  },
+  {
+   "t": "prefab",
+   "kind": "barrel",
+   "x": -13.6,
+   "z": -3.4
+  },
+  {
+   "t": "prefab",
+   "kind": "crate",
+   "x": 16,
+   "z": -4,
+   "p": {
+    "s": 1.4
+   }
+  },
+  {
+   "t": "prefab",
+   "kind": "barrel",
+   "x": 18.4,
+   "z": -3.4
+  },
+  {
+   "t": "prefab",
+   "kind": "crate",
+   "x": -16,
+   "z": 6,
+   "p": {
+    "s": 1.4
+   }
+  },
+  {
+   "t": "prefab",
+   "kind": "barrel",
+   "x": -13.6,
+   "z": 6.6
+  },
+  {
+   "t": "prefab",
+   "kind": "crate",
+   "x": 16,
+   "z": 6,
+   "p": {
+    "s": 1.4
+   }
+  },
+  {
+   "t": "prefab",
+   "kind": "barrel",
+   "x": 18.4,
+   "z": 6.6
+  },
+  {
+   "t": "prefab",
+   "kind": "crate",
+   "x": -20,
+   "z": -16,
+   "p": {
+    "s": 1.4
+   }
+  },
+  {
+   "t": "prefab",
+   "kind": "barrel",
+   "x": -17.6,
+   "z": -15.4
+  },
+  {
+   "t": "prefab",
+   "kind": "crate",
+   "x": 20,
+   "z": -16,
+   "p": {
+    "s": 1.4
+   }
+  },
+  {
+   "t": "prefab",
+   "kind": "barrel",
+   "x": 22.4,
+   "z": -15.4
+  },
+  {
+   "t": "prefab",
+   "kind": "crate",
+   "x": -9,
+   "z": 12,
+   "p": {
+    "s": 1.4
+   }
+  },
+  {
+   "t": "prefab",
+   "kind": "barrel",
+   "x": -6.6,
+   "z": 12.6
+  },
+  {
+   "t": "prefab",
+   "kind": "crate",
+   "x": 9,
+   "z": 12,
+   "p": {
+    "s": 1.4
+   }
+  },
+  {
+   "t": "prefab",
+   "kind": "barrel",
+   "x": 11.4,
+   "z": 12.6
+  },
+  {
+   "t": "box",
+   "tex": "brick",
+   "x": -23,
+   "y": 0,
+   "z": -12,
+   "w": 0.6,
+   "h": 3.2,
+   "d": 9
+  },
+  {
+   "t": "box",
+   "tex": "brick",
+   "x": 22.4,
+   "y": 0,
+   "z": -12,
+   "w": 0.6,
+   "h": 3.2,
+   "d": 9
+  },
+  {
+   "t": "box",
+   "tex": "brick",
+   "x": -12,
+   "y": 0,
+   "z": -23,
+   "w": 7,
+   "h": 3.2,
+   "d": 0.6
+  },
+  {
+   "t": "box",
+   "tex": "brick",
+   "x": 5,
+   "y": 0,
+   "z": -23,
+   "w": 7,
+   "h": 3.2,
+   "d": 0.6
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": -28,
+   "z": -28
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": 28,
+   "z": -28
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": -28,
+   "z": 28
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": 28,
+   "z": 28
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": -28,
+   "z": 0
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": 28,
+   "z": 0
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": -14,
+   "z": -20
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": 14,
+   "z": -20
+  },
+  {
+   "t": "prefab",
+   "kind": "candle",
+   "x": -7.5,
+   "z": -7.5
+  },
+  {
+   "t": "prefab",
+   "kind": "candle",
+   "x": 6.5,
+   "z": -7.5
+  },
+  {
+   "t": "prefab",
+   "kind": "candle",
+   "x": -7.5,
+   "z": 6.5
+  },
+  {
+   "t": "prefab",
+   "kind": "candle",
+   "x": 6.5,
+   "z": 6.5
+  },
+  {
+   "t": "box",
+   "tex": "stone",
+   "x": -25.3,
+   "y": 4.2,
+   "z": -25,
+   "w": 0.3,
+   "h": 1.1,
+   "d": 23.2
+  },
+  {
+   "t": "box",
+   "tex": "stone",
+   "x": -25.3,
+   "y": 4.2,
+   "z": 2,
+   "w": 0.3,
+   "h": 1.1,
+   "d": 23
+  },
+  {
+   "t": "box",
+   "tex": "stone",
+   "x": 25,
+   "y": 4.2,
+   "z": -25,
+   "w": 0.3,
+   "h": 1.1,
+   "d": 23.2
+  },
+  {
+   "t": "box",
+   "tex": "stone",
+   "x": 25,
+   "y": 4.2,
+   "z": 2,
+   "w": 0.3,
+   "h": 1.1,
+   "d": 23
+  },
+  {
+   "t": "floor",
+   "tex": "cobble",
+   "x": -51,
+   "y": 0,
+   "z": -62,
+   "w": 102,
+   "d": 38,
+   "zoo": 1
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -51,
+   "y": 5.800000000000001,
+   "z": -62,
+   "w": 102,
+   "h": 0.6,
+   "d": 3.4,
+   "zoo": 1
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -51,
+   "y": 5.800000000000001,
+   "z": -45.4,
+   "w": 102,
+   "h": 0.6,
+   "d": 21.4,
+   "zoo": 1
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -51,
+   "y": 5.800000000000001,
+   "z": -58.6,
+   "w": 45.4,
+   "h": 0.6,
+   "d": 13.2,
+   "zoo": 1
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": 5.6,
+   "y": 5.800000000000001,
+   "z": -58.6,
+   "w": 45.4,
+   "h": 0.6,
+   "d": 13.2,
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -51,
+   "z0": -58,
+   "x1": 51,
+   "z1": -58,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -51,
+   "z0": -58,
+   "x1": -51,
+   "z1": -28,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 51,
+   "z0": -58,
+   "x1": 51,
+   "z1": -28,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -51,
+   "z0": -28,
+   "x1": -5,
+   "z1": -28,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 5,
+   "z0": -28,
+   "x1": 51,
+   "z1": -28,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -32,
+   "y": 0,
+   "z": -33,
+   "w": 27,
+   "h": 9,
+   "d": 1,
+   "zoo": 1
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": 5,
+   "y": 0,
+   "z": -33,
+   "w": 27,
+   "h": 9,
+   "d": 1,
+   "zoo": 1
+  },
+  {
+   "t": "floor",
+   "tex": "cobble",
+   "x": -5,
+   "y": 0,
+   "z": -28,
+   "w": 10,
+   "d": 16,
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -5,
+   "z0": -14,
+   "x1": -5,
+   "z1": -28,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 5,
+   "z0": -14,
+   "x1": 5,
+   "z1": -28,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -45,
+   "z0": -58,
+   "x1": -45,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -45,
+   "z0": -46,
+   "x1": -42.5,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -37.5,
+   "z0": -46,
+   "x1": -35,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "floor",
+   "tex": "cobble",
+   "x": -44.5,
+   "y": 0.02,
+   "z": -57.5,
+   "w": 9,
+   "d": 11,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": -43.9,
+   "z": -47.6,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "spawner",
+   "x": -41,
+   "z": -52,
+   "p": {
+    "type": "zombieman",
+    "period": 3,
+    "max": 1,
+    "r": 2,
+    "total": 0,
+    "near": 120,
+    "tag": "zoo",
+    "hold": 8
+   },
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -35,
+   "z0": -58,
+   "x1": -35,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -35,
+   "z0": -46,
+   "x1": -32.5,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -27.5,
+   "z0": -46,
+   "x1": -25,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "floor",
+   "tex": "stone",
+   "x": -34.5,
+   "y": 0.02,
+   "z": -57.5,
+   "w": 9,
+   "d": 11,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": -33.9,
+   "z": -47.6,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "spawner",
+   "x": -31,
+   "z": -52,
+   "p": {
+    "type": "sergeant",
+    "period": 3,
+    "max": 1,
+    "r": 2,
+    "total": 0,
+    "near": 120,
+    "tag": "zoo",
+    "hold": 8
+   },
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -25,
+   "z0": -58,
+   "x1": -25,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -25,
+   "z0": -46,
+   "x1": -22.5,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -17.5,
+   "z0": -46,
+   "x1": -15,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "floor",
+   "tex": "cobble",
+   "x": -24.5,
+   "y": 0.02,
+   "z": -57.5,
+   "w": 9,
+   "d": 11,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": -23.9,
+   "z": -47.6,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "spawner",
+   "x": -21,
+   "z": -52,
+   "p": {
+    "type": "commando",
+    "period": 3,
+    "max": 1,
+    "r": 2,
+    "total": 0,
+    "near": 120,
+    "tag": "zoo",
+    "hold": 8
+   },
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -15,
+   "z0": -58,
+   "x1": -15,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -15,
+   "z0": -46,
+   "x1": -12.5,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": -7.5,
+   "z0": -46,
+   "x1": -5,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "floor",
+   "tex": "stone",
+   "x": -14.5,
+   "y": 0.02,
+   "z": -57.5,
+   "w": 9,
+   "d": 11,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": -13.9,
+   "z": -47.6,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "spawner",
+   "x": -11,
+   "z": -52,
+   "p": {
+    "type": "imp",
+    "period": 3,
+    "max": 1,
+    "r": 2,
+    "total": 0,
+    "near": 120,
+    "tag": "zoo",
+    "hold": 8
+   },
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 5,
+   "z0": -58,
+   "x1": 5,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 5,
+   "z0": -46,
+   "x1": 7.5,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 12.5,
+   "z0": -46,
+   "x1": 15,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "floor",
+   "tex": "cobble",
+   "x": 5.5,
+   "y": 0.02,
+   "z": -57.5,
+   "w": 9,
+   "d": 11,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": 6.1,
+   "z": -47.6,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "spawner",
+   "x": 9,
+   "z": -52,
+   "p": {
+    "type": "demon",
+    "period": 3,
+    "max": 1,
+    "r": 2,
+    "total": 0,
+    "near": 120,
+    "tag": "zoo",
+    "hold": 8
+   },
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 15,
+   "z0": -58,
+   "x1": 15,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 15,
+   "z0": -46,
+   "x1": 17.5,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 22.5,
+   "z0": -46,
+   "x1": 25,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "floor",
+   "tex": "stone",
+   "x": 15.5,
+   "y": 0.02,
+   "z": -57.5,
+   "w": 9,
+   "d": 11,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": 16.1,
+   "z": -47.6,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "spawner",
+   "x": 19,
+   "z": -52,
+   "p": {
+    "type": "knight",
+    "period": 3,
+    "max": 1,
+    "r": 2,
+    "total": 0,
+    "near": 120,
+    "tag": "zoo",
+    "hold": 8
+   },
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 25,
+   "z0": -58,
+   "x1": 25,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 25,
+   "z0": -46,
+   "x1": 27.5,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 32.5,
+   "z0": -46,
+   "x1": 35,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "floor",
+   "tex": "cobble",
+   "x": 25.5,
+   "y": 0.02,
+   "z": -57.5,
+   "w": 9,
+   "d": 11,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": 26.1,
+   "z": -47.6,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "spawner",
+   "x": 29,
+   "z": -52,
+   "p": {
+    "type": "baron",
+    "period": 3,
+    "max": 1,
+    "r": 2,
+    "total": 0,
+    "near": 120,
+    "tag": "zoo",
+    "hold": 8
+   },
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 35,
+   "z0": -58,
+   "x1": 35,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 45,
+   "z0": -58,
+   "x1": 45,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 35,
+   "z0": -46,
+   "x1": 37.5,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "wall",
+   "x0": 42.5,
+   "z0": -46,
+   "x1": 45,
+   "z1": -46,
+   "y": 0,
+   "h": 4.2,
+   "thick": 0.5,
+   "tex": "stoneDark",
+   "zoo": 1
+  },
+  {
+   "t": "floor",
+   "tex": "stone",
+   "x": 35.5,
+   "y": 0.02,
+   "z": -57.5,
+   "w": 9,
+   "d": 11,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": 36.1,
+   "z": -47.6,
+   "zoo": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "spawner",
+   "x": 39,
+   "z": -52,
+   "p": {
+    "type": "cacodemon",
+    "period": 3,
+    "max": 1,
+    "r": 2,
+    "total": 0,
+    "near": 120,
+    "tag": "zoo",
+    "hold": 8
+   },
+   "zoo": 1
+  },
+  {
+   "t": "floor",
+   "tex": "stone",
+   "x": -44.0,
+   "y": 0.02,
+   "z": -44.0,
+   "w": 14.0,
+   "d": 10.0,
+   "room": "runner"
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -44.6,
+   "y": 0,
+   "z": -44.6,
+   "w": 15.2,
+   "h": 5.8,
+   "d": 0.6,
+   "room": "runner"
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -44.6,
+   "y": 0,
+   "z": -34.0,
+   "w": 15.2,
+   "h": 5.8,
+   "d": 0.6,
+   "room": "runner"
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -44.6,
+   "y": 0,
+   "z": -44.6,
+   "w": 0.6,
+   "h": 5.8,
+   "d": 11.2,
+   "room": "runner"
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -30.0,
+   "y": 0,
+   "z": -44.6,
+   "w": 0.6,
+   "h": 5.8,
+   "d": 4.0,
+   "room": "runner"
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -30.0,
+   "y": 0,
+   "z": -37.0,
+   "w": 0.6,
+   "h": 5.8,
+   "d": 3.6,
+   "room": "runner"
+  },
+  {
+   "t": "box",
+   "tex": "stoneDark",
+   "x": -44.6,
+   "y": 5.8,
+   "z": -44.6,
+   "w": 15.8,
+   "h": 0.6,
+   "d": 11.2,
+   "room": "runner"
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": -42.5,
+   "z": -42.5,
+   "room": "runner"
+  },
+  {
+   "t": "prefab",
+   "kind": "torchPost",
+   "x": -42.5,
+   "z": -35.5,
+   "room": "runner"
+  },
+  {
+   "t": "prefab",
+   "kind": "spawner",
+   "x": -40.0,
+   "z": -39.0,
+   "p": {
+    "type": "runner",
+    "period": 4,
+    "max": 2,
+    "r": 3,
+    "total": 0,
+    "near": 120,
+    "tag": "zoo",
+    "hold": 8
+   },
+   "room": "runner"
+  },
+  {
+   "t": "prefab",
+   "kind": "cave",
+   "x": -5,
+   "z": -58,
+   "p": {
+    "w": 10,
+    "d": 12,
+    "h": 5,
+    "y": 0.03,
+    "face": "0 (+z, юг)",
+    "door": 5,
+    "tex": "caveRock",
+    "floorTex": "caveFloor",
+    "rough": 1,
+    "fires": 2,
+    "seed": 7
+   },
+   "zoo": 1,
+   "cave": 1
+  },
+  {
+   "t": "prefab",
+   "kind": "spawner",
+   "x": -1,
+   "z": -53,
+   "p": {
+    "type": "runner",
+    "period": 3,
+    "max": 1,
+    "r": 2.5,
+    "total": 0,
+    "near": 120,
+    "tag": "cave",
+    "hold": 7
+   },
+   "zoo": 1,
+   "cave": 1
+  }
+ ],
+ "enemies": [
+  {
+   "type": "runner",
+   "x": -40.0,
+   "z": -41.0,
+   "tag": "runnerRoom",
+   "guardR": 9
+  },
+  {
+   "type": "runner",
+   "x": -35.0,
+   "z": -37.0,
+   "tag": "runnerRoom",
+   "guardR": 9
+  }
+ ],
+ "pickups": [
+  {
+   "kind": "gun",
+   "x": -10,
+   "z": 24,
+   "y": 1.1
+  },
+  {
+   "kind": "shotgun",
+   "x": -6,
+   "z": 24,
+   "y": 1.1
+  },
+  {
+   "kind": "ammo",
+   "x": 6,
+   "z": 24,
+   "y": 1.1
+  },
+  {
+   "kind": "shells",
+   "x": 10,
+   "z": 24,
+   "y": 1.1
+  },
+  {
+   "kind": "health",
+   "x": -13,
+   "z": 20
+  },
+  {
+   "kind": "health",
+   "x": 13,
+   "z": 20
+  },
+  {
+   "kind": "shells",
+   "x": -4,
+   "z": -32,
+   "y": 1.1,
+   "zoo": 1
+  },
+  {
+   "kind": "health",
+   "x": 4,
+   "z": -32,
+   "y": 1.1,
+   "zoo": 1
+  },
+  {
+   "kind": "ammo",
+   "x": -10,
+   "z": -32,
+   "y": 1.1,
+   "zoo": 1
+  },
+  {
+   "kind": "shells",
+   "x": 10,
+   "z": -32,
+   "y": 1.1,
+   "zoo": 1
+  },
+  {
+   "kind": "rocket",
+   "x": -6,
+   "z": -30
+  },
+  {
+   "kind": "rockets",
+   "x": -4,
+   "z": -30,
+   "n": 10
+  },
+  {
+   "kind": "rockets",
+   "x": -2,
+   "z": -30,
+   "n": 10
+  }
+ ],
+ "npcs": [],
+ "triggers": [],
+ "rules": [],
+ "maxEnemies": 18,
+ "zooStash": {
+  "objects": [
+   {
+    "t": "box",
+    "tex": "stoneDark",
+    "x": -32,
+    "y": 0,
+    "z": -33,
+    "w": 64,
+    "h": 9,
+    "d": 1
+   },
+   {
+    "t": "cyl",
+    "tex": "stone",
+    "x": -0.9,
+    "y": 0,
+    "z": -27.299999999999997,
+    "r": 0.9,
+    "h": 4.2,
+    "seg": 8
+   },
+   {
+    "t": "prefab",
+    "kind": "torchPost",
+    "x": 0,
+    "z": -29
+   },
+   {
+    "t": "prefab",
+    "kind": "spawner",
+    "x": -23,
+    "z": -27,
+    "p": {
+     "type": "knight_hard",
+     "period": 9,
+     "max": 2,
+     "r": 5,
+     "total": 0,
+     "near": 45,
+     "tag": "spawn"
+    }
+   },
+   {
+    "t": "prefab",
+    "kind": "spawner",
+    "x": 21,
+    "z": -27,
+    "p": {
+     "type": "knight_hard",
+     "period": 9,
+     "max": 2,
+     "r": 5,
+     "total": 0,
+     "near": 45,
+     "tag": "spawn"
+    }
+   },
+   {
+    "t": "prefab",
+    "kind": "spawner",
+    "x": -2,
+    "z": 25,
+    "p": {
+     "type": "любой",
+     "period": 12,
+     "max": 2,
+     "r": 3,
+     "total": 0,
+     "near": 45,
+     "tag": "spawn"
+    }
+   }
+  ],
+  "enemies": [
+   {
+    "type": "knight_hard",
+    "x": -6,
+    "z": -9,
+    "tag": "boss",
+    "guardR": 15
+   },
+   {
+    "type": "knight_hard",
+    "x": 6,
+    "z": -9,
+    "tag": "boss",
+    "guardR": 15
+   },
+   {
+    "type": "knight_hard",
+    "x": 0,
+    "z": -16,
+    "tag": "boss",
+    "guardR": 15
+   },
+   {
+    "type": "knight_hard",
+    "x": 0,
+    "z": 4,
+    "tag": "boss",
+    "guardR": 0
+   },
+   {
+    "type": "guard",
+    "x": -14,
+    "z": -4,
+    "tag": "g",
+    "guardR": 12
+   },
+   {
+    "type": "woman",
+    "x": -28,
+    "z": -14,
+    "tag": "b",
+    "guardR": 10,
+    "y": 4.3
+   }
+  ],
+  "start": {
+   "x": 0,
+   "y": 0,
+   "z": 20,
+   "yaw": 0
+  }
+ }
+}

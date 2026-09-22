@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: blob: ws: http://localhost:* http://127.0.0.1:*">
+  <title>Рыцарь — редактор карт</title>
+  <link rel="stylesheet" href="/src/editor/editor.css">
+</head>
+<body>
+  <div id="top">
+    <a href="./index.html" class="btn">← хаб</a>
+    <span id="levelTitle" class="title">…</span>
+    <button id="save" title="Ctrl+S">Сохранить</button>
+    <span id="status" class="dim"></span>
+    <span class="spacer"></span>
+    <button id="undo" title="Ctrl+Z">↶</button><button id="redo" title="Ctrl+Y">↷</button>
+    <label><input type="checkbox" id="snap" checked> сетка <select id="snapSize"><option>0.25</option><option selected>0.5</option><option>1</option><option>2</option></select></label>
+    <label title="Новые объекты ставятся на выбранный этаж: высота = этаж × «высота этажа» из свойств уровня">этаж <select id="floorSel"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label>
+    <button id="camMode" title="T">Камера: сверху</button>
+    <button id="exportBtn">Экспорт</button><button id="importBtn">Импорт</button>
+    <a id="playBtn" class="btn play" target="_blank">▶ Играть</a>
+    <a id="sandboxBtn" class="btn" target="_blank">Песочница</a>
+  </div>
+  <div id="left">
+    <div class="panel">
+      <h3>Инструменты <button id="texBtn" class="small" title="Добавить свою текстуру или спрайт из PNG">+ PNG</button></h3>
+      <div id="palette"></div>
+      <div id="toolOpts"></div>
+    </div>
+    <div class="panel grow">
+      <h3>Объекты <input id="filter" placeholder="фильтр…"></h3>
+      <div id="list"></div>
+    </div>
+  </div>
+  <canvas id="view"></canvas>
+  <div id="right">
+    <div class="tabs"><button data-tab="props" class="on">Выбранное</button><button data-tab="level">Уровень</button><button data-tab="help">Помощь</button></div>
+    <div id="props" class="panel tab on"><p class="dim">Ничего не выбрано. Кликните по объекту или выберите инструмент слева и кликните на карте.</p></div>
+    <div id="levelProps" class="panel tab"></div>
+    <div id="help" class="panel tab">
+      <h3>Управление</h3>
+      <ul>
+        <li><b>ЛКМ</b> — выбрать / поставить объект инструментом; тянуть — переместить по полу; <b>Alt+тянуть</b> — поднять/опустить.</li>
+        <li>Как в Unity: <b>ПКМ</b> — смотреть, <b>средняя</b> — двигать карту, <b>Alt+ЛКМ</b> — орбита вокруг выбранного, <b>колесо</b> — приблизить к курсору, <b>WASD</b> + <b>Q/E</b> — полёт (Shift быстрее).</li>
+        <li><b>T</b> — вид сверху ↔ полёт. Сверху: ПКМ/средняя — двигать, колесо — масштаб к курсору.</li>
+        <li><b>Второй этаж</b>: выберите «этаж» в верхней панели — новые объекты (стены, полы, префабы) встанут на высоту <code>этаж × высота этажа</code>.
+          Высота этажа меняется в свойствах уровня (<code>floorH</code>, по умолчанию 3.2 м). Перекрытие — обычный «Пол / потолок» на нужном этаже,
+          подъём — префаб <b>Лестница</b>. У стены высоту можно задать кнопками «1 эт / 2 эт / 3 эт» в настройках инструмента.</li>
+        <li><b>PageUp / PageDown</b> — выше/ниже на шаг сетки; <b>стрелки</b> — сдвиг; <b>F</b> — к выбранному.</li>
+        <li><b>Черчение стен</b>: кликайте точки. Чтобы <b>замкнуть комнату</b> — кликните по жёлтой первой точке или нажмите <b>C</b> (кнопка «Замкнуть» слева).
+          <b>Enter</b> или двойной клик — закончить незамкнутую ломаную, <b>Backspace</b> — убрать последнюю точку, <b>Esc</b> — отменить.
+          Готовые стены сохраняются сразу. Каждый отрезок — отдельная стена, текстуру потом можно сменить.</li>
+        <li><b>+ PNG</b> — своя текстура (тайлится) или спрайт (картинка с прозрачностью, ставится инструментом «Спрайт»).</li>
+        <li><b>Delete</b> — удалить, <b>Ctrl+D</b> — дублировать, <b>Ctrl+Z / Ctrl+Y</b> — отмена/повтор, <b>Ctrl+S</b> — сохранить, <b>Esc</b> — снять выделение.</li>
+      </ul>
+      <h3>Координаты</h3>
+      <p>x — восток, z — юг (вниз экрана), y — высота. У коробок/полов x,z — минимальный угол, w — размер по x, d — по z, h — высота. Текстура тайлится 1 раз на 2 м.</p>
+      <h3>Логика</h3>
+      <p>Триггеры — зоны с действиями (JSON). Правила уровня — реакции на убийства (<code>kill</code>), зачистку тегов (<code>clear</code>), подбор предмета (<code>pickup</code>). Список действий ниже; подробнее в docs/EDITOR.md.</p>
+      <pre id="actionsHelp"></pre>
+    </div>
+  </div>
+  <script type="module" src="/src/editor/editor.js"></script>
+</body>
+</html>

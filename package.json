@@ -1,0 +1,57 @@
+{
+  "name": "knight",
+  "productName": "Рыцарь",
+  "version": "0.1.0",
+  "description": "Ультранасильственный FPS в духе раннего Doom. Уровень 1.",
+  "main": "electron/main.cjs",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite --port 5173 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --port 5173 --strictPort",
+    "electron": "npm run build && electron .",
+    "sheets": "npm run build && electron electron/export-sheets.cjs",
+    "dist": "npm run build && electron-builder --mac --win --linux",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:deck": "npm run build && electron-builder --linux dir --x64 && node tools/pack-deck.mjs"
+  },
+  "build": {
+    "appId": "ru.ricar.knight",
+    "productName": "Knight",
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "mac": {
+      "category": "public.app-category.games",
+      "target": [
+        "dir"
+      ]
+    },
+    "win": {
+      "target": [
+        "dir"
+      ]
+    },
+    "linux": {
+      "target": [
+        "dir"
+      ]
+    }
+  },
+  "dependencies": {
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8",
+    "vite": "^6.4.3"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true
+  }
+}

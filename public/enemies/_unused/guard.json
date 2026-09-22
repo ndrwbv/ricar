@@ -1,0 +1,132 @@
+{
+  "name": "guard",
+  "sheet": "guard.png",
+  "frameW": 132,
+  "frameH": 184,
+  "variants": 3,
+  "size": [
+    1.48,
+    2.05
+  ],
+  "radius": 0.52,
+  "frames": {
+    "walk0": 0,
+    "walk1": 1,
+    "attack": 2,
+    "pain": 3,
+    "headless": 4,
+    "crouch": 5,
+    "surrender": 6,
+    "knife": 7,
+    "hop0": 8,
+    "hop1": 9,
+    "crawl0": 10,
+    "crawl1": 11,
+    "dead": 12,
+    "deadHeadless": 13
+  },
+  "anims": {
+    "idle": {
+      "frames": [
+        "walk0"
+      ]
+    },
+    "walk": {
+      "frames": [
+        "walk0",
+        "walk1"
+      ],
+      "fps": 6
+    },
+    "attack": {
+      "frames": [
+        "attack"
+      ]
+    },
+    "pain": {
+      "frames": [
+        "pain"
+      ]
+    },
+    "headless": {
+      "frames": [
+        "headless"
+      ]
+    },
+    "crouch": {
+      "frames": [
+        "crouch"
+      ]
+    },
+    "surrender": {
+      "frames": [
+        "surrender"
+      ]
+    },
+    "knife": {
+      "frames": [
+        "knife"
+      ]
+    },
+    "hop": {
+      "frames": [
+        "hop0",
+        "hop1"
+      ],
+      "fps": 4
+    },
+    "crawl": {
+      "frames": [
+        "crawl0",
+        "crawl1"
+      ],
+      "fps": 2.5
+    }
+  },
+  "stats": {
+    "hp": 95,
+    "speed": 3.4,
+    "alertR": 20,
+    "female": false,
+    "melee": {
+      "range": 2.1,
+      "dmg": 14,
+      "windup": 0.55,
+      "cooldown": 1.1
+    },
+    "shield": {
+      "hits": 6,
+      "frames": 4,
+      "parry": 0.35,
+      "img": "shield.png",
+      "arm": "armR",
+      "w": 0.78,
+      "off": [
+        0.17,
+        0.46
+      ]
+    },
+    "flank": [
+      0,
+      0,
+      0.6,
+      -0.6,
+      1.2
+    ],
+    "tactics": {
+      "cover": 0.35,
+      "surrender": 0.2,
+      "fake": 0.7,
+      "knifeDmg": 24
+    },
+    "drop": "gib_knife"
+  },
+  "colors": {
+    "body": "#2a3448",
+    "legs": "#2a2a32",
+    "skin": "#c8956a",
+    "hair": "#2a2018"
+  },
+  "gibs": "male",
+  "head": "male"
+}

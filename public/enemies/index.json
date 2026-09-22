@@ -1,0 +1,38 @@
+[
+  {
+    "name": "zombieman",
+    "title": "зомби-солдат"
+  },
+  {
+    "name": "sergeant",
+    "title": "сержант с дробовиком"
+  },
+  {
+    "name": "commando",
+    "title": "пулемётчик"
+  },
+  {
+    "name": "imp",
+    "title": "бес"
+  },
+  {
+    "name": "demon",
+    "title": "демон"
+  },
+  {
+    "name": "knight",
+    "title": "рыцарь ада"
+  },
+  {
+    "name": "baron",
+    "title": "барон ада"
+  },
+  {
+    "name": "cacodemon",
+    "title": "какодемон"
+  },
+  {
+    "name": "runner",
+    "title": "бегунья"
+  }
+]

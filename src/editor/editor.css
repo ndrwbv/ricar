@@ -1,0 +1,51 @@
+html, body { margin: 0; height: 100%; background: #0c0808; color: #e8e0d0; font: 13px/1.4 "Helvetica Neue", Arial, sans-serif; overflow: hidden; }
+body { display: grid; grid-template-columns: 260px 1fr 320px; grid-template-rows: 44px 1fr; height: 100vh; }
+#top { grid-column: 1 / span 3; display: flex; align-items: center; gap: 8px; padding: 0 12px; background: #170f0f; border-bottom: 1px solid #3a2424; }
+#top .title { font: 18px Impact, "Arial Narrow", sans-serif; letter-spacing: .06em; color: #ffd070; margin: 0 8px; }
+#top .spacer { flex: 1; }
+#top label { color: #b09a78; display: flex; gap: 4px; align-items: center; }
+#left, #right { display: flex; flex-direction: column; overflow: hidden; background: #120c0c; }
+#left { border-right: 1px solid #3a2424; }
+#right { border-left: 1px solid #3a2424; }
+#view { grid-column: 2; width: 100%; height: 100%; display: block; }
+.panel { padding: 10px 12px; overflow: auto; border-bottom: 1px solid #2a1a1a; }
+.panel.grow { flex: 1; }
+.panel h3 { margin: 0 0 8px; font: 15px Impact, "Arial Narrow", sans-serif; letter-spacing: .08em; color: #c8b898; display: flex; gap: 8px; align-items: center; }
+.panel h3 input { flex: 1; }
+button, .btn { font: 12px Arial, sans-serif; background: #3a1c18; color: #f0e0c0; border: 1px solid #7a3a30; padding: 4px 10px; cursor: pointer; text-decoration: none; display: inline-block; }
+button:hover, .btn:hover { background: #6a2018; }
+.btn.play { background: #8a1410; border-color: #ff5a3a; font-weight: bold; }
+button.danger { border-color: #a03030; color: #ffa0a0; }
+.dim { color: #7f7460; font-size: 12px; }
+code { color: #c8b898; }
+select, input[type=text], input[type=number], textarea { background: #1a1010; color: #f0e0c0; border: 1px solid #5a3a30; padding: 3px 5px; font: 12px Menlo, monospace; }
+#palette { display: flex; flex-wrap: wrap; gap: 4px; }
+#palette .pal-h { width: 100%; color: #7f7460; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; margin-top: 6px; }
+#palette .pal { padding: 3px 8px; }
+#palette .pal.on { background: #c81820; border-color: #ff8060; color: #fff; }
+#palette .pal.enemy { border-color: #a04040; } #palette .pal.pickup { border-color: #40a060; } #palette .pal.trig { border-color: #a0a040; } #palette .pal.start { border-color: #40c060; } #palette .pal.light { border-color: #c09040; }
+#list .li { padding: 2px 6px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #c8b898; border-left: 3px solid transparent; }
+#list .li:hover { background: #221414; }
+#list .li.on { background: #3a1c18; color: #fff; border-left-color: #ffd070; }
+#list .li.enemies { border-left-color: #a04040; } #list .li.pickups { border-left-color: #40a060; } #list .li.triggers { border-left-color: #a0a040; } #list .li.npcs { border-left-color: #40a0c0; } #list .li.start { border-left-color: #40c060; }
+.tabs { display: flex; border-bottom: 1px solid #3a2424; }
+.tabs button { flex: 1; border: none; border-right: 1px solid #3a2424; background: #170f0f; padding: 8px; }
+.tabs button.on { background: #3a1c18; color: #ffd070; }
+.tab { display: none; flex: 1; }
+.tab.on { display: block; }
+.form .row { display: grid; grid-template-columns: 1fr 130px; gap: 8px; align-items: center; padding: 3px 0; border-bottom: 1px dotted #2a1a1a; }
+.form .row.wide { grid-template-columns: 1fr; }
+.form .row span { color: #d8ccb0; }
+.form textarea { width: 100%; box-sizing: border-box; }
+.form textarea.err { border-color: #ff4040; }
+.form input[type=checkbox] { justify-self: start; width: 16px; height: 16px; accent-color: #c81820; }
+.acts { display: flex; gap: 6px; margin-top: 10px; }
+#help ul { padding-left: 18px; } #help li { margin: 4px 0; } #help pre { white-space: pre-wrap; color: #b09a78; font-size: 11px; }
+
+/* кнопки черчения стен: замкнуть контур / закончить / шаг назад */
+.wall-btns { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0 4px; }
+.wall-btns button { flex: 1 1 auto; font: inherit; font-size: 12px; padding: 4px 6px; background: #2a2230; color: #e8dcc8; border: 1px solid #5a4a62; cursor: pointer; }
+.wall-btns button:hover:not(:disabled) { background: #4a3a52; border-color: #8a7a92; }
+.wall-btns button:first-child:not(:disabled) { background: #1e4030; border-color: #3a8a5a; color: #b8ffd0; }
+.wall-btns button:first-child:hover:not(:disabled) { background: #2a6a48; }
+.wall-btns button:disabled { opacity: .35; cursor: default; }

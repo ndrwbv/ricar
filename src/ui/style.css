@@ -1,0 +1,44 @@
+html, body { margin: 0; padding: 0; background: #000; overflow: hidden; height: 100%; }
+body { font-family: "Impact", "Arial Narrow", "Helvetica Neue", Arial, sans-serif; color: #e8e0d0; user-select: none; cursor: none; }
+
+#game { position: fixed; inset: 0; overflow: hidden; }   /* холст растянут строго кратно, доли пикселя срезаются краем */
+#gl, #hud { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+#gl { image-rendering: pixelated; image-rendering: crisp-edges; }
+#hud { image-rendering: pixelated; pointer-events: none; }
+
+#pain { position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background: radial-gradient(ellipse at center, rgba(180,0,0,0) 35%, rgba(160,0,0,.95) 100%); }
+#fade { position: absolute; inset: 0; pointer-events: none; background: #000; opacity: 0; transition: opacity .4s; }
+
+/* надписей в игре нет: #msg/#hint/#objective удалены вместе с текстом на экране */
+
+.screen { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: rgba(8, 3, 3, .86); text-align: center; cursor: default; z-index: 10; }
+.screen[hidden] { display: none; }
+.screen .title { font-size: clamp(48px, 12vh, 140px); letter-spacing: .12em; color: #f0e4c8;
+  text-shadow: 0 0 30px rgba(255,60,20,.5), 4px 4px 0 #500, 6px 6px 0 #000; line-height: 1; }
+.screen .title.red { color: #ff2a1a; }
+.screen .sub { margin-top: 1.2vh; font-size: clamp(16px, 2.6vh, 30px); letter-spacing: .2em; color: #b09a78; text-transform: uppercase; }
+.screen button { font: inherit; font-size: clamp(22px, 3.6vh, 42px); letter-spacing: .2em; padding: .35em 1.4em; margin-top: 2vh;
+  background: #8a1410; color: #fff2d8; border: 3px solid #ff5a3a; box-shadow: 0 0 24px rgba(255,60,20,.5), inset 0 0 12px rgba(0,0,0,.6); cursor: pointer; }
+.screen button:hover { background: #b81c14; }
+.screen .warn { margin-top: 5vh; font-size: clamp(11px, 1.5vh, 16px); color: #7a4a3a; letter-spacing: .15em; text-transform: uppercase; }
+
+.screen .link, .btn { display: inline-block; margin-top: 2vh; color: #b09a78; font-size: clamp(12px, 1.6vh, 18px); letter-spacing: .1em; text-decoration: none; text-transform: uppercase; cursor: pointer; }
+.screen .link:hover, .btn:hover { color: #ffd070; }
+#stats { position: absolute; top: 2vh; right: 2vw; font: 12px/1.4 "IBM Plex Mono", Menlo, monospace; color: #9ad; background: rgba(0,0,0,.5); padding: 4px 8px; pointer-events: none; z-index: 5; }
+#sandbox { position: absolute; left: 1vw; right: 1vw; bottom: 1vh; background: rgba(10,6,6,.92); border: 1px solid #5a3a2a; padding: 8px 12px; font: 13px/1.6 Arial, sans-serif; color: #d8ccb0; z-index: 20; cursor: default; }
+#sandbox .sb-title { font-family: Impact, "Arial Narrow", sans-serif; font-size: 18px; letter-spacing: .1em; color: #ffd070; margin-bottom: 4px; }
+#sandbox .dim { color: #8a7a60; font-size: 11px; font-family: Arial, sans-serif; letter-spacing: 0; }
+#sandbox .sb-row { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; margin: 3px 0; }
+#sandbox .sb-row b { color: #c8b898; margin-right: 4px; }
+#sandbox button, #sandbox .btn { font: inherit; font-size: 12px; background: #3a1c18; color: #f0e0c0; border: 1px solid #7a3a30; padding: 2px 8px; cursor: pointer; margin: 0; }
+#sandbox button:hover, #sandbox .btn:hover { background: #6a2018; }
+#sandbox label { display: inline-flex; gap: 4px; align-items: center; color: #c8b898; }
+
+/* Итоги вылазки по пещерам: единственное место в игре, где цифр много.
+   Колонка «что — сколько», без таблиц: список читается сверху вниз. */
+.cs-box { margin-top: 2.4vh; min-width: min(420px, 80vw); font-family: Arial, sans-serif; letter-spacing: .04em; }
+.cs-row { display: flex; justify-content: space-between; gap: 2em; padding: .35em .2em;
+  border-bottom: 1px solid rgba(122,98,54,.3); font-size: clamp(13px, 2vh, 20px); color: #b09a78; }
+.cs-row b { color: #ffd070; font-family: Impact, "Arial Narrow", sans-serif; letter-spacing: .08em; }

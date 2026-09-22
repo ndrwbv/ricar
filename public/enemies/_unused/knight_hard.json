@@ -1,0 +1,133 @@
+{
+  "name": "knight_hard",
+  "sheet": "knight_hard.png",
+  "frameW": 136,
+  "frameH": 188,
+  "variants": 3,
+  "size": [
+    1.66,
+    2.3
+  ],
+  "radius": 0.6,
+  "frames": {
+    "walk0": 0,
+    "walk1": 1,
+    "attack": 2,
+    "pain": 3,
+    "headless": 4,
+    "crouch": 5,
+    "surrender": 6,
+    "knife": 7,
+    "dead": 8,
+    "deadHeadless": 9
+  },
+  "anims": {
+    "idle": {
+      "frames": [
+        "walk0"
+      ]
+    },
+    "walk": {
+      "frames": [
+        "walk0",
+        "walk1"
+      ],
+      "fps": 5
+    },
+    "attack": {
+      "frames": [
+        "attack"
+      ]
+    },
+    "pain": {
+      "frames": [
+        "pain"
+      ]
+    },
+    "headless": {
+      "frames": [
+        "headless"
+      ]
+    },
+    "crouch": {
+      "frames": [
+        "crouch"
+      ]
+    },
+    "surrender": {
+      "frames": [
+        "surrender"
+      ]
+    },
+    "knife": {
+      "frames": [
+        "knife"
+      ]
+    }
+  },
+  "parts": {
+    "head": [
+      0.4,
+      0.04,
+      0.63,
+      0.24
+    ],
+    "armL": [
+      0.24,
+      0.24,
+      0.46,
+      0.62
+    ],
+    "armR": [
+      0.62,
+      0.24,
+      0.84,
+      0.62
+    ],
+    "legL": [
+      0.36,
+      0.64,
+      0.52,
+      1.0
+    ],
+    "legR": [
+      0.5,
+      0.64,
+      0.66,
+      1.0
+    ]
+  },
+  "stats": {
+    "hp": 260,
+    "speed": 3.2,
+    "alertR": 22,
+    "female": false,
+    "melee": {
+      "range": 2.5,
+      "dmg": 30,
+      "windup": 0.8,
+      "cooldown": 1.6
+    },
+    "flank": [
+      0,
+      0,
+      0.5,
+      -0.5
+    ],
+    "guardR": 0,
+    "tactics": {
+      "cover": 0.1,
+      "surrender": 0.15,
+      "fake": 0.9,
+      "knifeDmg": 32
+    }
+  },
+  "colors": {
+    "body": "#3a3a40",
+    "legs": "#2a2a30",
+    "skin": "#8a8a94",
+    "hair": "#6a1218"
+  },
+  "gibs": "male",
+  "head": "male"
+}

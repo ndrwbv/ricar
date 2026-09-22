@@ -1,0 +1,241 @@
+{
+  "name": "runner",
+  "title": "бегунья",
+  "sheet": "sheet.png",
+  "frameW": 256,
+  "frameH": 256,
+  "variants": 1,
+  "size": [
+    2.0,
+    2.0
+  ],
+  "radius": 0.4,
+  "frames": {
+    "stand": 0,
+    "walk0": 1,
+    "walk1": 2,
+    "walk2": 3,
+    "walk3": 4,
+    "attack": 5,
+    "attack1": 6,
+    "pain": 7,
+    "crouch": 8,
+    "surrender": 9,
+    "die0": 10,
+    "die1": 11,
+    "die2": 12,
+    "die3": 13,
+    "dead": 14,
+    "crawl0": 15,
+    "crawl1": 16,
+    "walk0NoArmR": 17,
+    "walk1NoArmR": 18,
+    "attackNoArmR": 19,
+    "painNoArmR": 20,
+    "walk0NoArmL": 21,
+    "walk1NoArmL": 22,
+    "attackNoArmL": 23,
+    "painNoArmL": 24,
+    "walk0NoArms": 25,
+    "walk1NoArms": 26,
+    "attackNoArms": 27,
+    "painNoArms": 28,
+    "walk0Hop": 29,
+    "walk1Hop": 30,
+    "attackHop": 30,
+    "painHop": 30,
+    "fall": 31
+  },
+  "anims": {
+    "idle": {
+      "frames": [
+        "stand"
+      ]
+    },
+    "walk": {
+      "frames": [
+        "walk0",
+        "walk1",
+        "walk2",
+        "walk3"
+      ],
+      "fps": 9
+    },
+    "attack": {
+      "frames": [
+        "attack",
+        "attack1"
+      ],
+      "fps": 7
+    },
+    "pain": {
+      "frames": [
+        "pain"
+      ]
+    },
+    "crouch": {
+      "frames": [
+        "crouch"
+      ]
+    },
+    "surrender": {
+      "frames": [
+        "surrender"
+      ]
+    },
+    "die": {
+      "frames": [
+        "die0",
+        "die1",
+        "die2",
+        "die3",
+        "dead"
+      ],
+      "fps": 12
+    },
+    "crawl": {
+      "frames": [
+        "crawl0",
+        "crawl1"
+      ],
+      "fps": 3
+    },
+    "hop": {
+      "frames": [
+        "walk0Hop",
+        "walk1Hop"
+      ],
+      "fps": 4
+    },
+    "walkNoArmR": {
+      "frames": [
+        "walk0NoArmR",
+        "walk1NoArmR"
+      ],
+      "fps": 9
+    },
+    "attackNoArmR": {
+      "frames": [
+        "attackNoArmR"
+      ]
+    },
+    "painNoArmR": {
+      "frames": [
+        "painNoArmR"
+      ]
+    },
+    "walkNoArmL": {
+      "frames": [
+        "walk0NoArmL",
+        "walk1NoArmL"
+      ],
+      "fps": 9
+    },
+    "attackNoArmL": {
+      "frames": [
+        "attackNoArmL"
+      ]
+    },
+    "painNoArmL": {
+      "frames": [
+        "painNoArmL"
+      ]
+    },
+    "walkNoArms": {
+      "frames": [
+        "walk0NoArms",
+        "walk1NoArms"
+      ],
+      "fps": 9
+    },
+    "attackNoArms": {
+      "frames": [
+        "attackNoArms"
+      ]
+    },
+    "painNoArms": {
+      "frames": [
+        "painNoArms"
+      ]
+    },
+    "attackHop": {
+      "frames": [
+        "attackHop"
+      ]
+    },
+    "painHop": {
+      "frames": [
+        "painHop"
+      ]
+    }
+  },
+  "stats": {
+    "hp": 90,
+    "speed": 6.4,
+    "alertR": 26,
+    "female": true,
+    "melee": {
+      "range": 2.0,
+      "dmg": 12,
+      "windup": 0.36,
+      "cooldown": 0.85
+    },
+    "lunge": true,
+    "flank": [
+      1.4,
+      -1.4,
+      2.2,
+      -2.2,
+      0
+    ],
+    "tactics": {
+      "cover": 0.2,
+      "surrender": 0.35,
+      "fake": 0.5,
+      "knifeDmg": 0
+    }
+  },
+  "parts": {
+    "head": [
+      0.44,
+      0.03,
+      0.57,
+      0.19
+    ],
+    "armR": [
+      0.32,
+      0.17,
+      0.42,
+      0.52
+    ],
+    "armL": [
+      0.58,
+      0.17,
+      0.68,
+      0.52
+    ],
+    "legL": [
+      0.42,
+      0.55,
+      0.5,
+      1.0
+    ],
+    "legR": [
+      0.5,
+      0.55,
+      0.58,
+      1.0
+    ]
+  },
+  "colors": {
+    "body": "#8f939c",
+    "legs": "#3b4149",
+    "skin": "#e8bb9a",
+    "hair": "#3a2016"
+  },
+  "gibs": "female",
+  "head": "head_woman3",
+  "drop": {
+    "items": []
+  }
+}

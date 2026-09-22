@@ -1,0 +1,123 @@
+{
+  "name": "hound",
+  "sheet": "hound.png",
+  "frameW": 144,
+  "frameH": 104,
+  "variants": 3,
+  "size": [
+    1.52,
+    1.1
+  ],
+  "radius": 0.44,
+  "frames": {
+    "walk0": 0,
+    "walk1": 1,
+    "attack": 2,
+    "pain": 3,
+    "headless": 4,
+    "hop0": 5,
+    "hop1": 6,
+    "crawl0": 7,
+    "crawl1": 8,
+    "dead": 9
+  },
+  "anims": {
+    "idle": {
+      "frames": [
+        "walk0"
+      ]
+    },
+    "walk": {
+      "frames": [
+        "walk0",
+        "walk1"
+      ],
+      "fps": 11
+    },
+    "attack": {
+      "frames": [
+        "attack"
+      ]
+    },
+    "pain": {
+      "frames": [
+        "pain"
+      ]
+    },
+    "headless": {
+      "frames": [
+        "headless"
+      ]
+    },
+    "hop": {
+      "frames": [
+        "hop0",
+        "hop1"
+      ],
+      "fps": 6
+    },
+    "crawl": {
+      "frames": [
+        "crawl0",
+        "crawl1"
+      ],
+      "fps": 3
+    }
+  },
+  "parts": {
+    "head": [
+      0.04,
+      0.1,
+      0.34,
+      0.52
+    ],
+    "armL": null,
+    "armR": null,
+    "legL": [
+      0.14,
+      0.56,
+      0.34,
+      1
+    ],
+    "legR": [
+      0.44,
+      0.58,
+      0.66,
+      1
+    ]
+  },
+  "stats": {
+    "hp": 55,
+    "speed": 8.4,
+    "alertR": 30,
+    "female": false,
+    "melee": {
+      "range": 1.9,
+      "dmg": 13,
+      "windup": 0.26,
+      "cooldown": 0.6
+    },
+    "lunge": true,
+    "flank": [
+      1.4,
+      -1.4,
+      2.4,
+      -2.4,
+      0
+    ],
+    "tactics": {
+      "cover": 0,
+      "surrender": 0,
+      "fake": 0,
+      "knifeDmg": 0
+    }
+  },
+  "colors": {
+    "body": "#4a3a2e",
+    "legs": "#3a2e24",
+    "skin": "#8a6a4a",
+    "hair": "#2a2018"
+  },
+  "gibs": "male",
+  "head": null
+}
