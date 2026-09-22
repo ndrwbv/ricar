@@ -52,8 +52,15 @@ jobs:
           if [ -z "$TAG" ]; then TAG="deck-$(date -u +%Y%m%d-%H%M)"; fi
           NOTES="$IN_NOTES"
           if [ -z "$NOTES" ]; then NOTES="Сборка для Steam Deck из ${GITHUB_SHA:0:7}."; fi
-          printf '%s\n\n%s\n' "$NOTES" \
-            'Запуск: см. docs/DECK.md — распаковать в ~/Games и добавить knight.sh как стороннюю игру в Steam.' > notes.md
-          gh release create "$TAG" release/knight-deck.tar.gz \
+          {
+            printf '%s\n\n' "$NOTES"
+            printf 'Установка на Steam Deck — одна команда в Konsole (десктоп-режим):\n\n'
+            printf '```bash\n'
+            printf 'curl -fsSL https://raw.githubusercontent.com/%s/main/tools/install-deck.sh | bash\n' "$GITHUB_REPOSITORY"
+            printf '```\n\n'
+            printf 'Игра встанет в папку `knight` там, где запущена команда. Подробности — docs/DECK.md.\n'
+          } > notes.md
+          cp tools/install-deck.sh release/install-deck.sh
+          gh release create "$TAG" release/knight-deck.tar.gz release/install-deck.sh \
             --title "Рыцарь $TAG" --notes-file notes.md --target "$GITHUB_SHA"
           echo "релиз: $TAG" >> "$GITHUB_STEP_SUMMARY"

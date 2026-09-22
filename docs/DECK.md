@@ -1,7 +1,7 @@
 # Запуск на Steam Deck
 
 Сборка — распакованный Electron-пакет под linux-x64 (Deck именно x64), без установщика и без Proton:
-папка кладётся в домашний каталог Deck'а, а `knight.sh` добавляется в Steam как сторонняя игра.
+ставится скриптом в одну команду, а `knight.sh` добавляется в Steam как сторонняя игра.
 
 Готовые сборки лежат в релизах: <https://github.com/ndrwbv/ricar/releases>.
 Файл всегда называется `knight-deck.tar.gz` (~110 МБ), поэтому ссылка на свежий не меняется:
@@ -10,34 +10,47 @@
 https://github.com/ndrwbv/ricar/releases/latest/download/knight-deck.tar.gz
 ```
 
-## 1. Установка из десктоп-режима (весь путь, копипастой)
+## 1. Установка из десктоп-режима — одна команда
 
 1. **Перейти в десктоп-режим**: зажать кнопку **STEAM** → `Power` → **Switch to Desktop**
    (или зажать кнопку питания → `Switch to Desktop`). Deck станет обычным KDE-компьютером.
-2. Открыть **Konsole** (внизу слева меню «пуск» → `System` → `Konsole`; или через `Alt+Space` набрать `konsole`).
-   Экранная клавиатура в десктоп-режиме — `STEAM + X`.
-3. Скачать, распаковать и запустить:
+2. Открыть **Konsole** (меню «пуск» внизу слева → `System` → `Konsole`).
+   Экранная клавиатура — `STEAM + X`.
+3. Перейти туда, где хочется держать игру (например `cd ~`), и выполнить:
 
 ```bash
-mkdir -p ~/Games && cd ~/Games
-curl -L -o knight-deck.tar.gz https://github.com/ndrwbv/ricar/releases/latest/download/knight-deck.tar.gz
-tar -xzf knight-deck.tar.gz && rm knight-deck.tar.gz
-chmod +x ~/Games/linux-unpacked/knight.sh
-~/Games/linux-unpacked/knight.sh
+curl -fsSL https://raw.githubusercontent.com/ndrwbv/ricar/main/tools/install-deck.sh | bash
 ```
 
-Игра должна открыться на весь экран — это и есть проверка, что сборка живая.
-Выйти — `Alt+F4`, окном вместо полного экрана — `knight.sh --windowed`.
+Скрипт сам качает свежий релиз, распаковывает игру в папку `knight` **в текущем каталоге**,
+проставляет права на запуск и делает ярлык «Рыцарь» на рабочем столе и в меню приложений.
+В конце печатает путь к `knight.sh` и что делать дальше.
 
-Обновление до новой версии — те же четыре команды: старая папка `linux-unpacked` перезапишется
-(сохранённые уровни лежат отдельно, в `~/.config/Knight/levels`, и не пострадают).
+Флаги (после `| bash -s --`):
 
-Если качать в браузере (Firefox на Deck'е) — файл попадёт в `~/Downloads`, тогда:
+| Флаг | Что делает |
+| --- | --- |
+| `--run` | запустить игру сразу после установки |
+| `--dir ПАПКА` | поставить не в `./knight`, а куда сказано |
+| `--tag v0.1.0` | конкретная версия вместо последней |
+| `--no-desktop` | не создавать ярлык |
+
+Например, поставить и сразу поиграть:
 
 ```bash
-mkdir -p ~/Games && tar -xzf ~/Downloads/knight-deck.tar.gz -C ~/Games
-chmod +x ~/Games/linux-unpacked/knight.sh
+curl -fsSL https://raw.githubusercontent.com/ndrwbv/ricar/main/tools/install-deck.sh | bash -s -- --run
 ```
+
+**Обновление** — та же команда: скрипт видит свою прошлую установку и перезаписывает её.
+Чужую папку он не тронет, а сохранённые уровни лежат отдельно (`~/.config/Knight/levels`) и не страдают.
+
+Игра запускается вручную так:
+
+```bash
+./knight/knight.sh              # полный экран; --windowed — окном
+```
+
+Сам скрипт установки — [tools/install-deck.sh](../tools/install-deck.sh), он же приложен к каждому релизу.
 
 ## 2. Добавить в Steam, чтобы играть из игрового режима
 
@@ -45,7 +58,8 @@ chmod +x ~/Games/linux-unpacked/knight.sh
 
 1. Steam → **Games → Add a Non-Steam Game to My Library → Browse**.
 2. В диалоге снизу переключить фильтр на **All Files** (иначе `.sh` не видно),
-   указать `/home/deck/Games/linux-unpacked/knight.sh` → **Add Selected Programs**.
+   указать `knight.sh` из папки, куда поставил скрипт (например `/home/deck/knight/knight.sh`) →
+   **Add Selected Programs**. Ярлык «Рыцарь» уже есть и в списке установленных приложений в том же диалоге.
 3. Правый клик по игре в библиотеке → **Properties**:
    * имя — `Рыцарь`;
    * **Launch Options** (не обязательно) — сразу в песочницу, минуя хаб:
@@ -89,13 +103,13 @@ chmod +x ~/Games/linux-unpacked/knight.sh
 
 ## 5. Если не запускается
 
-* Запустить из Konsole с логом: `~/Games/linux-unpacked/knight.sh --log`.
+* Запустить из Konsole с логом: `./knight/knight.sh --log`.
 * «The SUID sandbox helper binary was found, but is not configured correctly» — запущен
   бинарник `knight` напрямую вместо `knight.sh`; нужен флаг `--no-sandbox` (скрипт его и ставит).
 * Чёрный экран в игровом режиме, но в десктопе всё работает — в свойствах ярлыка включён Proton, выключить.
 * Нет реакции на геймпад — в раскладке контроллера выбран шаблон с клавиатурой; переключить на
   **Gamepad with Mouse Trackpad**.
-* `Permission denied` при запуске — `chmod +x ~/Games/linux-unpacked/knight.sh`.
+* `Permission denied` при запуске — `chmod +x knight/knight.sh`.
 
 ## 6. Как выпускается релиз
 

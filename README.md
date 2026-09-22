@@ -7,7 +7,9 @@
 
 * Гейм-дизайн документ: [docs/GDD.md](docs/GDD.md)
 * Технические решения, производительность на Steam Deck, почему не Godot: [docs/TECH.md](docs/TECH.md)
-* Как собрать и запустить игру на Steam Deck: [docs/DECK.md](docs/DECK.md) — готовые сборки в [релизах](https://github.com/ndrwbv/ricar/releases), релиз собирается вручную через Actions
+* Как запустить игру на Steam Deck: [docs/DECK.md](docs/DECK.md). Установка на Deck — одна команда в Konsole:
+  `curl -fsSL https://raw.githubusercontent.com/ndrwbv/ricar/main/tools/install-deck.sh | bash`
+  (сборки — в [релизах](https://github.com/ndrwbv/ricar/releases), релиз собирается вручную через Actions)
 * Как нарисовать своих врагов и настроить их анимации/поведение: [docs/ENEMIES.md](docs/ENEMIES.md) — файлы в `public/enemies/`
 
 ## Запуск
